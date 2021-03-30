@@ -1,4 +1,4 @@
-package jp.room417.common
+package jp.room417.common.sampleApp
 
 import org.junit.Test
 
