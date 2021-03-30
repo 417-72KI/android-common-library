@@ -13,35 +13,35 @@ open class BaseActivity : AppCompatActivity {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        log("onCreate")
+        debugLog("onCreate")
     }
 
     override fun onStart() {
         super.onStart()
-        log("onStart")
+        debugLog("onStart")
     }
 
     override fun onResume() {
         super.onResume()
-        log("onResume")
+        debugLog("onResume")
     }
 
     override fun onPause() {
         super.onPause()
-        log("onPause")
+        debugLog("onPause")
     }
 
     override fun onStop() {
         super.onStop()
-        log("onStop")
+        debugLog("onStop")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        log("onDestroy")
+        debugLog("onDestroy")
     }
 
-    protected fun log(msg: String) {
+    protected fun debugLog(msg: String) {
         Log.d(javaClass.simpleName, msg)
     }
 }

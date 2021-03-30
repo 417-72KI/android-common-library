@@ -1,11 +1,26 @@
 package jp.room417.common.util
 
 import android.content.Context
+import android.content.SharedPreferences
+import android.util.Log
 
-class PrefSys(context: Context) {
-    private val appName = context.applicationInfo.name
-    private val pref = context.getSharedPreferences("${appName}.pref", Context.MODE_PRIVATE)
-    private val sys = context.getSharedPreferences("${appName}.sys", Context.MODE_PRIVATE)
+/**
+ * Wrapper of `SharedPreferences`
+ *
+ * This class can be initialized only after context created ( = after `onCreate()` called).
+ *
+ * @param context Created context
+ */
+class PrefSys(context: Context, identifier: String? = null) {
+    private val pref: SharedPreferences
+    private val sys: SharedPreferences
+
+    init {
+        val appName = identifier ?: context.applicationInfo.packageName
+        Log.d(javaClass.name, "Initialize PrefSys with identifier: \"${appName}\".")
+        pref = context.getSharedPreferences("${appName}.pref", Context.MODE_PRIVATE)
+        sys = context.getSharedPreferences("${appName}.sys", Context.MODE_PRIVATE)
+    }
 
     fun setPrefInt(label: String, put: Int) = pref.edit().run {
         putInt(label, put)
