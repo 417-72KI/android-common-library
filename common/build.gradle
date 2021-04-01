@@ -11,8 +11,8 @@ android {
     defaultConfig {
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 1
-        versionName "1.0.0-SNAPSHOT"
+        // versionCode 1
+        // versionName project.describedVersion
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -57,7 +57,7 @@ publishing {
         maven(MavenPublication) {
             groupId 'jp.room417'
             artifactId 'android-common-library'
-            version "${android.defaultConfig.versionName}"
+            version project.describedVersion
             artifact sourceJar
             artifact "${buildDir}/outputs/aar/common-release.aar"
 
@@ -82,8 +82,8 @@ publishing {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/417-72KI/android-common-library")
             credentials {
-                username = project.localProperties.get("GITHUB_USER") ?: project.findProperty("GITHUB_USER") ?: System.getenv("GITHUB_USER")
-                password = project.localProperties.get("GITHUB_TOKEN") ?: project.findProperty("GITHUB_TOKEN") ?: System.getenv("GITHUB_TOKEN")
+                username = project.localProperties.get("gpr.user") ?: project.findProperty("gpr.user") ?: System.getenv("GITHUB_USER")
+                password = project.localProperties.get("gpr.key") ?: project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
             }
         }
     }

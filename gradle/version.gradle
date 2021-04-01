@@ -1,0 +1,56 @@
+class SemanticVersion {
+    int major
+    int minor
+    int patch
+    String preRelease
+    String metadata
+
+    private SemanticVersion(int major, int minor, int patch, String preRelease, String metadata) {
+        this.major = major
+        this.minor = minor
+        this.patch = patch
+        this.preRelease = preRelease
+        this.metadata = metadata
+    }
+
+    static def initial = new SemanticVersion(1, 0, 0, 'SNAPSHOT', null)
+
+    static def from(String str) {
+        // https://semver.org/#is-there-a-suggested-regular-expression-regex-to-check-a-semver-string
+        def matcher = str =~ /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/
+        assert matcher.groupCount() == 5
+        if (matcher.size() == 0) {
+            return null
+        }
+        return new SemanticVersion(matcher[0][1] as int, matcher[0][2] as int, matcher[0][3] as int, matcher[0][4] as String, matcher[0][5] as String)
+    }
+
+    @Override
+    String toString() {
+        def version = "${major}.${minor}.${patch}"
+        if (preRelease != null && !preRelease.isEmpty()) {
+            version += "-${preRelease}"
+        }
+        if (metadata != null && !metadata.isEmpty()) {
+            version += "+${metadata}"
+        }
+        return version
+    }
+}
+
+def createVersion = {
+    def versionString = ['sh', '-c', 'git describe --tags --always --first-parent'].execute().text.trim()
+    def version = SemanticVersion.from(versionString) ?: SemanticVersion.initial
+    if (version.preRelease) {
+        version.preRelease = 'SNAPSHOT'
+    }
+    return version.toString()
+}
+
+project.ext.describedVersion = createVersion()
+
+task printVersion {
+    doLast {
+        println createVersion()
+    }
+}
