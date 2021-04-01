@@ -82,8 +82,8 @@ publishing {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/417-72KI/android-common-library")
             credentials {
-                username = project.localProperties.get("gpr.user") ?: project.findProperty("gpr.user") ?: System.getenv("GITHUB_USER")
-                password = project.localProperties.get("gpr.key") ?: project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
+                username = project.localProperties?.get("gpr.user") ?: project.findProperty("gpr.user") ?: System.getenv("GITHUB_USER")
+                password = project.localProperties?.get("gpr.key") ?: project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
             }
         }
     }
