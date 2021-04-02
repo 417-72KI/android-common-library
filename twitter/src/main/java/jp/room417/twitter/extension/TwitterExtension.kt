@@ -1,4 +1,4 @@
-package jp.room417.common.extension
+package jp.room417.twitter.extension
 
 import twitter4j.Twitter
 import twitter4j.TwitterException
