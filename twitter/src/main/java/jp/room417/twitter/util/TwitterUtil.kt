@@ -1,4 +1,4 @@
-package jp.room417.twitter
+package jp.room417.twitter.util
 
 import android.content.Context
 import jp.room417.common.extension.letWith
