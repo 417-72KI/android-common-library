@@ -61,4 +61,13 @@ object TwitterUtil {
      */
     @JvmStatic
     fun hasAccessToken(context: Context): Boolean = loadAccessToken(context) != null
+
+    /**
+     * アクセストークンを削除します。
+     */
+    @JvmStatic
+    fun clearAccessToken(context: Context) = PrefSys(context).run {
+        removePref(TOKEN)
+        removePref(TOKEN_SECRET)
+    }
 }

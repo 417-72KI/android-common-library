@@ -62,6 +62,16 @@ class PrefSys(context: Context, identifier: String? = null) {
         apply()
     }
 
+    fun removePref(label: String) = pref.edit().run {
+        remove(label)
+        apply()
+    }
+
+    fun removeSys(label: String) = sys.edit().run {
+        remove(label)
+        apply()
+    }
+
     fun getPrefInt(label: String, def: Int = 0): Int = pref.getInt(label, def)
 
     fun getPrefString(label: String, def: String? = null): String? = pref.getString(label, def)
