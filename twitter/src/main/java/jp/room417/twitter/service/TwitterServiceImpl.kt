@@ -8,8 +8,8 @@ import twitter4j.TwitterFactory
 import twitter4j.auth.AccessToken
 
 class TwitterServiceImpl(context: Context, apiKey: String, secret: String) : TwitterService {
+    private val prefSys = PrefSys(context)
     private val twitter: Twitter
-    private val prefSys: PrefSys
 
     init {
         val factory = TwitterFactory()
@@ -18,7 +18,6 @@ class TwitterServiceImpl(context: Context, apiKey: String, secret: String) : Twi
         if (hasAccessToken) {
             twitter.oAuthAccessToken = loadAccessToken()
         }
-        prefSys = PrefSys(context)
     }
 
     override val hasAccessToken: Boolean
