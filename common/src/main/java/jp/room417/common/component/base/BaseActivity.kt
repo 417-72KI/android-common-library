@@ -3,6 +3,7 @@ package jp.room417.common.component.base
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.annotation.ContentView
 import androidx.annotation.LayoutRes
 
@@ -43,5 +44,13 @@ open class BaseActivity : AppCompatActivity {
 
     protected fun debugLog(msg: String) {
         Log.d(javaClass.simpleName, msg)
+    }
+
+    protected fun showToast(text: String) {
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
+    }
+
+    protected fun showToast(resId: Int) {
+        Toast.makeText(this, resId, Toast.LENGTH_SHORT).show()
     }
 }
