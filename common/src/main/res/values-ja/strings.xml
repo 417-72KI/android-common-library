@@ -2,4 +2,5 @@
 <resources>
     <string name="ok">OK</string>
     <string name="cancel">キャンセル</string>
+    <string name="error">エラー</string>
 </resources>
