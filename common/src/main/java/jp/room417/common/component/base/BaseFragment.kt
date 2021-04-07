@@ -18,59 +18,59 @@ open class BaseFragment : Fragment {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        log("onCreate")
+        debugLog("onCreate")
     }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
-        log("onCreateView")
+        debugLog("onCreateView")
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        log("onViewCreated")
+        debugLog("onViewCreated")
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        log("onAttach")
+        debugLog("onAttach")
     }
 
     override fun onStart() {
         super.onStart()
-        log("onStart")
+        debugLog("onStart")
     }
 
     override fun onResume() {
         super.onResume()
-        log("onResume")
+        debugLog("onResume")
     }
 
     override fun onPause() {
         super.onPause()
-        log("onPause")
+        debugLog("onPause")
     }
 
     override fun onStop() {
         super.onStop()
-        log("onStop")
+        debugLog("onStop")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        log("onDestroy")
+        debugLog("onDestroy")
     }
 
     override fun onDetach() {
         super.onDetach()
-        log("onDetach")
+        debugLog("onDetach")
     }
 
-    protected fun log(msg: String) {
+    protected fun debugLog(msg: String) {
         Log.d(javaClass.simpleName, msg)
     }
 }
