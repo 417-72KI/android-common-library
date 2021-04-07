@@ -11,17 +11,18 @@ import androidx.fragment.app.FragmentActivity
 open class BaseDialog : DialogFragment() {
     @JvmOverloads
     fun show(fragment: Fragment, tag: String? = null) {
-        fragment.fragmentManager?.beginTransaction()?.let {
-            it.add(this, tag)
-            it.commitAllowingStateLoss()
+        fragment.fragmentManager?.beginTransaction()?.apply {
+            add(this@BaseDialog, tag)
+            commitAllowingStateLoss()
         }
     }
 
     @JvmOverloads
     fun show(activity: FragmentActivity, tag: String? = null) {
-        val ft = activity.supportFragmentManager.beginTransaction()
-        ft.add(this, tag)
-        ft.commitAllowingStateLoss()
+        activity.supportFragmentManager.beginTransaction().apply {
+            add(this@BaseDialog, tag)
+            commitAllowingStateLoss()
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
