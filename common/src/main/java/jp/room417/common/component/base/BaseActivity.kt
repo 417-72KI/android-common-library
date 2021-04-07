@@ -1,16 +1,16 @@
 package jp.room417.common.component.base
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.annotation.ContentView
 import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AppCompatActivity
 
 open class BaseActivity : AppCompatActivity {
-    constructor(): super()
-    @ContentView constructor(@LayoutRes layoutId: Int) : super(layoutId)
-
+    constructor() : super()
+    @ContentView
+    constructor(@LayoutRes layoutId: Int) : super(layoutId)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

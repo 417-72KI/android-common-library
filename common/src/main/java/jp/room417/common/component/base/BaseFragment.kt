@@ -1,6 +1,5 @@
 package jp.room417.common.component.base
 
-import androidx.fragment.app.Fragment
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -9,9 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.ContentView
 import androidx.annotation.LayoutRes
+import androidx.fragment.app.Fragment
 
 open class BaseFragment : Fragment {
-    constructor(): super()
+    constructor() : super()
+
     @ContentView
     constructor(@LayoutRes layoutId: Int) : super(layoutId)
 
@@ -20,9 +21,11 @@ open class BaseFragment : Fragment {
         log("onCreate")
     }
 
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         log("onCreateView")
         return super.onCreateView(inflater, container, savedInstanceState)
     }
