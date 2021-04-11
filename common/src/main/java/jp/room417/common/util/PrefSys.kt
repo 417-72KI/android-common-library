@@ -12,8 +12,8 @@ import android.util.Log
  * @param context Created context
  */
 class PrefSys(context: Context, identifier: String? = null) {
-    private val pref: SharedPreferences
-    private val sys: SharedPreferences
+    internal val pref: SharedPreferences
+    internal val sys: SharedPreferences
 
     init {
         val appName = identifier ?: context.applicationInfo.packageName
