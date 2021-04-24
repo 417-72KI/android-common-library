@@ -1,9 +1,10 @@
 name: publish
-
 on:
   push:
     branches:
       - main
+    tags:
+      - v*
 env:
   GITHUB_USER: ${{ secrets.GITHUB_ACTOR }}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
