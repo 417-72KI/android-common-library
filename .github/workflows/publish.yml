@@ -14,4 +14,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Publish
-      run: ./gradlew assembleRelease publish
+      run: ./gradlew printVersion assembleRelease publish
