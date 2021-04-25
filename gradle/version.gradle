@@ -13,7 +13,7 @@ class SemanticVersion {
         this.metadata = metadata
     }
 
-    static def initial = new SemanticVersion(1, 0, 0, 'SNAPSHOT', null)
+    static def initial = new SemanticVersion(0, 0, 0, 'SNAPSHOT', null)
 
     static def from(String str) {
         // https://semver.org/#is-there-a-suggested-regular-expression-regex-to-check-a-semver-string
@@ -42,6 +42,7 @@ def createVersion = {
     def versionString = ['sh', '-c', 'git describe --tags --always --first-parent'].execute().text.trim()
     def version = SemanticVersion.from(versionString) ?: SemanticVersion.initial
     if (version.preRelease) {
+        version.patch += 1
         version.preRelease = 'SNAPSHOT'
     }
     return version.toString()
