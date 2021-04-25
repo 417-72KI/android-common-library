@@ -39,7 +39,7 @@ class SemanticVersion {
 }
 
 def createVersion = {
-    ['sh', '-c', 'git', 'fetch', '--tags'].execute().waitFor()
+    ['sh', '-c', 'git fetch --tags'].execute().waitFor()
     def versionString = ['sh', '-c', 'git describe --tags --always --first-parent'].execute().text.trim()
     def version = SemanticVersion.from(versionString) ?: SemanticVersion.initial
     if (version.preRelease) {
@@ -62,7 +62,7 @@ task createTagFromVersion {
         if (['sh', '-c', 'git symbolic-ref --short HEAD'].execute().text.trim() != 'main') {
             throw new GradleException('This task must be run in main branch')
         }
-        ['sh', '-c', 'git', 'fetch', '--tags'].execute().waitFor()
+        ['sh', '-c', 'git fetch --tags'].execute().waitFor()
     }
     doLast {
         def version = createVersion().replaceFirst(/-SNAPSHOT/, "")
