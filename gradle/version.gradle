@@ -39,6 +39,7 @@ class SemanticVersion {
 }
 
 def createVersion = {
+    ['sh', '-c', 'git', 'fetch', '--tags'].execute().waitFor()
     def versionString = ['sh', '-c', 'git describe --tags --always --first-parent'].execute().text.trim()
     def version = SemanticVersion.from(versionString) ?: SemanticVersion.initial
     if (version.preRelease) {
