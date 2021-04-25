@@ -55,3 +55,32 @@ task printVersion {
         println createVersion()
     }
 }
+
+task createTagFromVersion {
+    doFirst {
+        if (['sh', '-c', 'git symbolic-ref --short HEAD'].execute().text.trim() != 'main') {
+            throw new GradleException('This task must be run in main branch')
+        }
+        ['sh', '-c', 'git', 'fetch', '--tags'].execute().waitFor()
+    }
+    doLast {
+        def version = createVersion().replaceFirst(/-SNAPSHOT/, "")
+        if (!version.startsWith('v')) {
+            version = "v${version}"
+        }
+        def versionList = ['sh', '-c', 'git tag'].execute().text.trim().split('\n')
+        if(versionList.contains(version)) {
+            throw new GradleException("`${version}` already exists.")
+        }
+        println "set tag for `${version}`"
+
+        def retValue = ['sh', '-c', "git tag ${version} main"].execute().waitFor()
+        if (retValue != 0) {
+            throw new GradleException("invalid return code on `git tag`: ${retValue}")
+        }
+        retValue = ['sh', '-c', "git push origin ${version}"].execute().waitFor()
+        if (retValue != 0) {
+            throw new GradleException("invalid return code on `git push`: ${retValue}")
+        }
+    }
+}
