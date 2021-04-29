@@ -40,4 +40,5 @@ if lint_warning_count == 0
   markdown comment
 else
   markdown comment + " (But **#{lint_warning_count}** warnings reported by Android Lint and ktlint.)"
+  warn status_report[:warnings]
 end
