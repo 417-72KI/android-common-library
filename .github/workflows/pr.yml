@@ -34,6 +34,14 @@ jobs:
       run: ./gradlew lintDebug
     - name: Run test
       run: ./gradlew testDebug --stacktrace
+    - name: 'Upload test and lint reports'
+      uses: actions/upload-artifact@v2
+      with:
+        name: reports
+        path: |
+          **/build/reports
+          **/build/test-results
+        retention-days: 7
     - name: Run Danger
       if: cancelled() != true
       env:
