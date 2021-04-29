@@ -51,7 +51,8 @@ object TwitterUtil {
     @JvmStatic
     private fun loadAccessToken(context: Context): AccessToken? = PrefSys(context).let {
         it.getPrefString(TOKEN)?.letWith(it.getPrefString(TOKEN_SECRET)) {
-            token, tokenSecret -> AccessToken(token, tokenSecret)
+            token, tokenSecret ->
+            AccessToken(token, tokenSecret)
         }
     }
 

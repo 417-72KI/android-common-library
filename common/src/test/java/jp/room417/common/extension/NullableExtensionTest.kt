@@ -14,15 +14,15 @@ class NullableExtensionTest {
     @ArgumentsSource(LetWithTestCase::class)
     fun letWith(param1: String?, param2: Int?, expected: String?) {
         assertThat(param1?.letWith(param2) { p1, p2 -> "$p1: $p2" })
-                .isEqualTo(expected)
+            .isEqualTo(expected)
     }
 
     private class LetWithTestCase : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
-                arguments(null, null, null),
-                arguments(null, 1, null),
-                arguments("foo", null, null),
-                arguments("bar", 1, "bar: 1")
+            arguments(null, null, null),
+            arguments(null, 1, null),
+            arguments("foo", null, null),
+            arguments("bar", 1, "bar: 1")
         )
     }
 }

@@ -18,8 +18,8 @@ class PrefSys(context: Context, identifier: String? = null) {
     init {
         val appName = identifier ?: context.applicationInfo.packageName
         Log.d(javaClass.name, "Initialize PrefSys with identifier: \"${appName}\".")
-        pref = context.getSharedPreferences("${appName}.pref", Context.MODE_PRIVATE)
-        sys = context.getSharedPreferences("${appName}.sys", Context.MODE_PRIVATE)
+        pref = context.getSharedPreferences("$appName.pref", Context.MODE_PRIVATE)
+        sys = context.getSharedPreferences("$appName.sys", Context.MODE_PRIVATE)
     }
 
     fun setPrefInt(label: String, put: Int) = pref.edit().run {

@@ -7,7 +7,7 @@ val Twitter.isAuthorized: Boolean
     get() = try {
         oAuthAccessToken != null
     } catch (e: Exception) {
-        when(e) {
+        when (e) {
             is TwitterException, is IllegalStateException -> false
             else -> throw e
         }
