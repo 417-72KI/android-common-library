@@ -36,6 +36,11 @@ allprojects {
     }
 
     ktlint {
+        disabledRules = [
+            "import-ordering",
+            "no-wildcard-imports",
+        ]
+
         reporters {
             ignoreFailures = true
             reporter "checkstyle"
