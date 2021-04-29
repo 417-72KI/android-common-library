@@ -13,23 +13,30 @@ open class SingleLiveData<T>(initialValue: T? = null) : LiveData<T>() {
     private val firstIgnore = AtomicBoolean(true)
 
     @Suppress("MemberVisibilityCanBePrivate")
-    fun observe(owner: LifecycleOwner, observer: ((T) -> Unit)) = source.observe(owner, Observer {
-        if (firstIgnore.getAndSet(false)) {
-            return@Observer
-        }
-        it?.let { observer(it) }
-    })
+    fun observe(owner: LifecycleOwner, observer: ((T) -> Unit)) =
+        source.observe(
+            owner,
+            Observer {
+                if (firstIgnore.getAndSet(false)) {
+                    return@Observer
+                }
+                it?.let { observer(it) }
+            }
+        )
 
     override fun observe(owner: LifecycleOwner, observer: Observer<in T>) =
         observe(owner) { observer.onChanged(it) }
 
     @Suppress("MemberVisibilityCanBePrivate")
-    fun observeForever(observer: ((T) -> Unit)) = source.observeForever(Observer {
-        if (firstIgnore.getAndSet(false)) {
-            return@Observer
-        }
-        it?.let { observer(it) }
-    })
+    fun observeForever(observer: ((T) -> Unit)) =
+        source.observeForever(
+            Observer {
+                if (firstIgnore.getAndSet(false)) {
+                    return@Observer
+                }
+                it?.let { observer(it) }
+            }
+        )
 
     override fun observeForever(observer: Observer<in T>) =
         observeForever { observer.onChanged(it) }
