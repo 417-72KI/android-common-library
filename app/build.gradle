@@ -30,8 +30,7 @@ android {
         jvmTarget = '1.8'
     }
     lintOptions {
-        disable "UnsafeExperimentalUsageError",
-            "UnsafeExperimentalUsageWarning"
+        disable 'UnsafeExperimentalUsageError', 'UnsafeExperimentalUsageWarning'
     }
 }
 
