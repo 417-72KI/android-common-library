@@ -2,32 +2,42 @@ name: pr
 
 on:
   pull_request:
+    types: [opened, synchronize, edited]
     paths-ignore:
       - README.md
       - LICENSE
 jobs:
-  test:
+  verify:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: set up JDK 1.8
+    - name: set up JDK 8
       uses: actions/setup-java@v2
       with:
         distribution: zulu
         java-version: 8
     - uses: actions/cache@v2
       with:
-        path: ~/.gradle/caches
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
         key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
         restore-keys: |
           ${{ runner.os }}-gradle-
-    - name: Run Compile
-      run: ./gradlew assembleDebug
-    - name: Test with Gradle
-      run: ./gradlew test --stacktrace
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Run Inspection
-      run: ./gradlew lint
+    - name: Set up Ruby from .ruby-version
+      uses: ruby/setup-ruby@v1
+      with:
+        bundler-cache: true
+    - name: Run ktlint
+      run: ./gradlew --continue ktlintCheck
+    - name: Run lint
+      run: ./gradlew lintDebug
+    - name: Run test
+      run: ./gradlew testDebug --stacktrace
+    - name: Run Danger
+      if: cancelled() != true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        JOB_STATUS: ${{ job.status }}
+      run: |
+        bundle exec danger --remove-previous-comments --fail-on-errors=true

@@ -5,6 +5,9 @@ on:
       - main
     tags:
       - v*
+    paths-ignore:
+      - README.md
+      - LICENSE
 env:
   GITHUB_USER: ${{ secrets.GITHUB_ACTOR }}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
