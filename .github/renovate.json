@@ -3,5 +3,6 @@
     "config:base",
     "github>hatena/renovate-config"
   ],
-  "labels": ["dependencies"]
+  "labels": ["dependencies"],
+  "schedule": ["after 7pm and before 8am on every weekday", "every weekend"]
 }
