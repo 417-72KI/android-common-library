@@ -35,10 +35,8 @@ return unless status_report[:errors].empty?
 
 return markdown ':heavy_exclamation_mark: Pull request check failed.' if job_status != 'success'
 
-comment = "## Status\n:heavy_check_mark: Pull request check passed."
-if lint_warning_count == 0
-  markdown comment
-else
-  markdown comment + " (But **#{lint_warning_count}** warnings reported by Android Lint and ktlint.)"
-  # warn status_report[:warnings]
+markdown "## Status\n:heavy_check_mark: Pull request check passed."
+if lint_warning_count > 0
+  markdown " (**#{lint_warning_count}** warnings reported by Android Lint and ktlint.)"
+  warn status_report[:warnings]
 end
