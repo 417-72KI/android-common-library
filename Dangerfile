@@ -19,8 +19,6 @@ Dir.glob("**/build/reports/lint-results*.xml").each { |report|
   android_lint.lint(inline_mode: true)
 }
 
-lint_warning_count = status_report[:warnings].count
-
 Dir.glob("**/build/test-results/*/*.xml").each { |report|
   junit.parse report
   junit.show_skipped_tests = true
@@ -31,14 +29,12 @@ warn 'Write at least one line in the description of PR.' if github.pr_json['auth
 
 warn 'Changes have exceeded 500 lines. Divide if possible.' if git.lines_of_code > 500
 
+warn status_report[:warnings]
+fail status_report[:errors]
+
 return unless status_report[:errors].empty?
 
 return markdown ':heavy_exclamation_mark: Pull request check failed.' if job_status != 'success'
 
-comment = "## Status\n:heavy_check_mark: Pull request check passed."
-if lint_warning_count == 0
-  markdown comment
-else
-  markdown comment + " (But **#{lint_warning_count}** warnings reported by Android Lint and ktlint.)"
-  # warn status_report[:warnings]
-end
+markdown "## Status\n:tada: Pull request check passed."
+markdown ":warning: Some warnings reported by Android Lint or ktlint." unless status_report[:warnings].empty?
