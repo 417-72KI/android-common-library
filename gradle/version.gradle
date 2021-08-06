@@ -73,7 +73,7 @@ task createTagFromVersion {
         if (['sh', '-c', 'git symbolic-ref --short HEAD'].execute().text.trim() != 'main') {
             throw new GradleException('This task must be run in main branch')
         }
-        ['sh', '-c', 'git fetch --tags'].execute().waitFor()
+        ['sh', '-c', 'git pull --rebase --tags'].execute().waitFor()
     }
     doLast {
         def version = createVersion().replaceFirst(/-SNAPSHOT/, "")
