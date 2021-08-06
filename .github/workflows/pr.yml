@@ -29,7 +29,7 @@ jobs:
       with:
         bundler-cache: true
     - name: lint and test
-      run: ./gradlew --continue clean ktlintCheck lintDebug testDebug --stacktrace
+      run: ./gradlew --continue printVersion clean ktlintCheck lintDebug testDebug --stacktrace
     - name: 'Upload lint and test reports'
       uses: actions/upload-artifact@v2
       with:
