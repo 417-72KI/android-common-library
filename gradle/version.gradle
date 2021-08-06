@@ -47,8 +47,11 @@ def createVersion = {
         def nextMinor = project.properties['nextVersion.minor'] as Integer
         if (nextMajor != null && nextMajor > version.major) {
             version.major = nextMajor
+            version.minor = 0
+            version.patch = 0
         } else if (nextMinor != null && nextMinor > version.minor) {
             version.minor = nextMinor
+            version.patch = 0
         } else {
             version.patch += 1
         }
