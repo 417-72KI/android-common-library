@@ -21,15 +21,15 @@ jobs:
     - name: set up JDK 11
       uses: actions/setup-java@v2
       with:
-          distribution: zulu
-          java-version: 11
+        distribution: zulu
+        java-version: 11
     - uses: actions/cache@v2
       with:
-          path: |
-              ~/.gradle/caches
-              ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: |
-              ${{ runner.os }}-gradle-
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-
     - name: Publish
       run: ./gradlew printVersion assembleRelease publish
