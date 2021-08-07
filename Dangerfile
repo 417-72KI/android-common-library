@@ -1,5 +1,7 @@
 job_status = ENV['JOB_STATUS']
 
+ignore_lint_project_list = ['app-sample']
+
 github.dismiss_out_of_range_messages({
   error: false,
   warning: true,
@@ -8,14 +10,14 @@ github.dismiss_out_of_range_messages({
 })
 
 Dir.glob("**/build/reports/ktlint/**/ktlint*.xml")
-.filter { |report| !report.start_with?("app-sample") }
+.filter { |report| ignore_lint_project_list.all? { |v| !report.start_with?(v) } }
 .each { |report|
   checkstyle_format.base_path = Dir.pwd
   checkstyle_format.report report.to_s
 }
 
 Dir.glob("**/build/reports/lint-results*.xml")
-.filter { |report| !report.start_with?("app-sample") }
+.filter { |report| ignore_lint_project_list.all? { |v| !report.start_with?(v) } }
 .each { |report|
   android_lint.skip_gradle_task = true
   android_lint.report_file = report.to_s
@@ -24,7 +26,7 @@ Dir.glob("**/build/reports/lint-results*.xml")
 }
 
 Dir.glob("**/build/test-results/*/*.xml")
-.filter { |report| !report.start_with?("app-sample") }
+.filter { |report| ignore_lint_project_list.all? { |v| !report.start_with?(v) } }
 .each { |report|
   junit.parse report
   junit.show_skipped_tests = true
