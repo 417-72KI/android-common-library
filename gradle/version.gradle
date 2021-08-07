@@ -42,9 +42,12 @@ def createVersion = {
     ['sh', '-c', 'git fetch --tags'].execute().waitFor()
     def versionString = ['sh', '-c', 'git describe --tags --always --first-parent'].execute().text.trim()
     def version = SemanticVersion.from(versionString) ?: SemanticVersion.initial
+    println version
     if (version.preRelease) {
         def nextMajor = project.properties['nextVersion.major'] as Integer
         def nextMinor = project.properties['nextVersion.minor'] as Integer
+        println nextMajor
+        println nextMinor
         if (nextMajor != null && nextMajor > version.major) {
             version.major = nextMajor
             version.minor = 0
@@ -57,6 +60,7 @@ def createVersion = {
         }
         version.preRelease = 'SNAPSHOT'
     }
+    println version
     return version.toString()
 }
 
