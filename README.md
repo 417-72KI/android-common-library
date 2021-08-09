@@ -1,6 +1,16 @@
 # android-common-library
 An android library to reduce frequently used functions/utilities in my apps.
 
+## Requirement
+### v2.x
+- JDK 11+
+- Gradle 7.1.1+
+- Android Studio Arctic Fox 2020.3.1+
+
+### v1.0.x
+- JDK 8+
+- Gradle 4.2.2+
+
 ## Usage
 
 ### top-level `build.gradle`
