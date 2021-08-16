@@ -7,7 +7,7 @@
   "schedule": ["after 7pm and before 8am on every weekday", "every weekend"],
   "packageRules": [
     {
-        "matchManagers": ["bundler", "ruby-version"],
+        "matchManagers": ["ruby-version"],
         "enabled": false
     }
   ]
