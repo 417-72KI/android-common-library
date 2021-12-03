@@ -7,7 +7,8 @@ import android.os.Bundle
 import jp.room417.common.component.base.BaseActivity
 import jp.room417.twitter.R
 import jp.room417.twitter.extension.isAuthorized
-import jp.room417.twitter.util.TwitterUtil
+import jp.room417.twitter.service.DefaultTwitterServiceFactory
+import jp.room417.twitter.service.TwitterService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,7 +23,10 @@ abstract class OAuthBaseActivity : BaseActivity() {
     private lateinit var apiKey: String
     private lateinit var apiSecret: String
 
-    private lateinit var twitter: Twitter
+    private lateinit var twitterService: TwitterService
+    private val twitter: Twitter
+    get() = twitterService.twitter
+
     private var requestToken: RequestToken? = null
     private val scope = CoroutineScope(Dispatchers.Default)
 
@@ -32,7 +36,7 @@ abstract class OAuthBaseActivity : BaseActivity() {
 
         setCallBackActivity()
 
-        twitter = TwitterUtil.getTwitterInstance(this, apiKey, apiSecret)
+        twitterService = DefaultTwitterServiceFactory().createService(this, apiKey, apiSecret)
 
         if (twitter.isAuthorized) {
             showToast(R.string.twitter_already_connected)
@@ -113,7 +117,7 @@ abstract class OAuthBaseActivity : BaseActivity() {
     }
 
     private fun successOAuth(accessToken: AccessToken) {
-        TwitterUtil.storeAccessToken(this, accessToken)
+        twitterService.storeAccessToken(accessToken)
         callBack()
     }
 
