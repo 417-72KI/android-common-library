@@ -7,7 +7,11 @@ import twitter4j.Twitter
 import twitter4j.TwitterFactory
 import twitter4j.auth.AccessToken
 
-@Deprecated("Use `TwitterService`", replaceWith = ReplaceWith("TwitterService"))
+@Deprecated(
+    "Use `TwitterService`",
+    replaceWith = ReplaceWith("TwitterService"),
+    level = DeprecationLevel.ERROR
+)
 object TwitterUtil {
     private const val TOKEN = "twitter_token"
     private const val TOKEN_SECRET = "twitter_token_secret"
