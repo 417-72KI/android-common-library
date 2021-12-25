@@ -94,5 +94,9 @@ task createTagFromVersion {
         if (retValue != 0) {
             throw new GradleException("invalid return code on `git push`: ${retValue}")
         }
+        retValue = ['sh', '-c', "gh release create ${version} -d -n ''"].execute().waitFor()
+        if (retValue != 0) {
+            throw new GradleException("invalid return code on `gh release create`: ${retValue}")
+        }
     }
 }
