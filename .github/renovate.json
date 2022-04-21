@@ -10,5 +10,12 @@
         "matchManagers": ["ruby-version"],
         "enabled": false
     }
-  ]
+  ],
+  "automerge": true,
+  "major": {
+      "automerge": false
+  },
+  "minor": {
+    "automerge": false
+  }
 }
