@@ -4,7 +4,11 @@
     "github>hatena/renovate-config"
   ],
   "labels": ["dependencies"],
-  "schedule": ["after 7pm and before 8am on every weekday", "every weekend"],
+  "schedule": [
+    "after 7pm every weekday",
+    "before 8am every weekday",
+    "every weekend"
+  ],
   "automerge": true,
   "major": {
       "automerge": false
