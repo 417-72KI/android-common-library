@@ -2,7 +2,7 @@ buildscript {
     ext {
         kotlin_version = '1.6.21'
         ktx_version = '1.7.0'
-        appcompat_version = '1.4.1'
+        appcompat_version = '1.4.2'
         coroutines_version = '1.6.2'
         min_sdk_version = 23
         target_sdk_version = 31
