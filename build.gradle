@@ -3,7 +3,7 @@ buildscript {
         kotlin_version = '1.7.10'
         ktx_version = '1.8.0'
         appcompat_version = '1.4.2'
-        coroutines_version = '1.6.3'
+        coroutines_version = '1.6.4'
         min_sdk_version = 23
         target_sdk_version = 31
         compile_sdk_version = 31
