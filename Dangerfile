@@ -42,7 +42,7 @@ fail status_report[:errors]
 
 return unless status_report[:errors].empty?
 
-return markdown ':heavy_exclamation_mark: Pull request check failed.' if job_status != 'success'
+return fail ':heavy_exclamation_mark: Pull request check failed.' if job_status != 'success'
 
 markdown "## Status\n:tada: Pull request check passed."
 markdown ":warning: Some warnings reported by Android Lint or ktlint." unless status_report[:warnings].empty?
