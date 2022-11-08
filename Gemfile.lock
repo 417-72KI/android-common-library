@@ -13,7 +13,7 @@ GEM
     colored2 (3.1.2)
     cork (0.3.0)
       colored2 (~> 3.1)
-    danger (9.0.0)
+    danger (9.1.0)
       claide (~> 1.0)
       claide-plugins (>= 0.9.2)
       colored2 (~> 3.1)
@@ -98,7 +98,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  danger (~> 9.0.0)
+  danger (~> 9.1.0)
   danger-android_lint (~> 0.0.8)
   danger-checkstyle_format (~> 0.1.1)
   danger-junit (~> 1.0.0)
