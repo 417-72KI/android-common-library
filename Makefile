@@ -1,11 +1,10 @@
 .SILENT:
 .PHONY: tag
 
-tag:
+tag: test
 	./gradlew createTagFromVersion
 
-release:
-	$(MAKE) tag
+release: tag
 
 test:
 	./gradlew --continue ktlintCheck lintDebug testDebug --stacktrace
