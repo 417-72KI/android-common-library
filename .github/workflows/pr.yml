@@ -1,11 +1,13 @@
 name: pr
-
 on:
   pull_request:
     types: [opened, synchronize, edited]
     paths-ignore:
       - README.md
       - LICENSE
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}
+  cancel-in-progress: true
 jobs:
   verify:
     runs-on: ubuntu-latest
