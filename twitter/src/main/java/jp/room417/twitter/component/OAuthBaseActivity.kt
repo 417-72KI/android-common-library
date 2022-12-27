@@ -15,6 +15,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import twitter4j.AccessToken
+import twitter4j.OAuthAuthorization
 import twitter4j.RequestToken
 import twitter4j.Twitter
 
@@ -29,6 +30,8 @@ abstract class OAuthBaseActivity(
     private lateinit var twitterService: TwitterService
     private val twitter: Twitter
         get() = twitterService.twitter
+    private val auth: OAuthAuthorization
+        get() = twitterService.auth
 
     private var requestToken: RequestToken? = null
     private val scope = CoroutineScope(Dispatchers.Default)
@@ -41,7 +44,7 @@ abstract class OAuthBaseActivity(
 
         twitterService = factory.createService(this, apiKey, apiSecret)
 
-        if (twitter.isAuthorized) {
+        if (auth.isAuthorized) {
             showToast(R.string.twitter_already_connected)
             callBack()
         } else {
@@ -75,7 +78,7 @@ abstract class OAuthBaseActivity(
      */
     private suspend fun startAuthorize() {
         val url = withContext(Dispatchers.Default) {
-            requestToken = twitter.getOAuthRequestToken(callbackURL)
+            requestToken = auth.getOAuthRequestToken(callbackURL)
             requestToken?.authenticationURL?.let { Uri.parse(it) }
         }
         withContext(Dispatchers.Main) {
@@ -101,7 +104,7 @@ abstract class OAuthBaseActivity(
 
         scope.launch {
             val accessToken = withContext(Dispatchers.Default) {
-                twitter.getOAuthAccessToken(requestToken, verifier)
+                auth.getOAuthAccessToken(requestToken, verifier)
             }
             withContext(Dispatchers.Main) {
                 when (accessToken) {
