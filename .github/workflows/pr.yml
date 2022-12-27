@@ -30,10 +30,17 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         bundler-cache: true
+    - name: build
+      run: |
+        ./gradlew --continue clean
+        mkdir -p build/reports
+        ./gradlew --continue build --stacktrace 2>build/reports/build-error-log.txt
     - name: lint and test
+      if: success()
       run: ./gradlew --continue clean ktlintCheck lintDebug testDebug --stacktrace
     - name: 'Upload lint and test reports'
       uses: actions/upload-artifact@v3
+      if: cancelled() != true
       with:
         name: reports
         path: |
