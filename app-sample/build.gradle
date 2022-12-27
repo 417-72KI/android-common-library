@@ -45,7 +45,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$appcompat_version"
     implementation "androidx.core:core-ktx:$ktx_version"
 
-    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'com.google.android.material:material:1.7.0'
 
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.1'
     testImplementation 'org.assertj:assertj-core:3.23.1'
