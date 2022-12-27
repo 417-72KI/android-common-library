@@ -61,11 +61,11 @@ abstract class OAuthBaseActivity(
         } else {
             throw IllegalStateException("No Activity set as callback. Intent for this activity must be created by `TwitterOAuthActivity.newIntent()`. ")
         }
-        callbackURL = extras[IntentKey.CALLBACK_URL] as? String
+        callbackURL = extras.getString(IntentKey.CALLBACK_URL)
             ?: throw IllegalStateException("No callback URL set. Intent for this activity must be created by `TwitterOAuthActivity.newIntent()`. ")
-        apiKey = extras[IntentKey.API_KEY] as? String
+        apiKey = extras.getString(IntentKey.API_KEY)
             ?: throw IllegalStateException("No API key set. Intent for this activity must be created by `TwitterOAuthActivity.newIntent()`. ")
-        apiSecret = extras[IntentKey.API_SECRET] as? String
+        apiSecret = extras.getString(IntentKey.API_SECRET)
             ?: throw IllegalStateException("No API secret set. Intent for this activity must be created by `TwitterOAuthActivity.newIntent()`. ")
     }
 
