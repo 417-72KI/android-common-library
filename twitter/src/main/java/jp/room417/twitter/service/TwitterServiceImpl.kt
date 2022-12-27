@@ -5,7 +5,7 @@ import jp.room417.common.extension.letWith
 import jp.room417.common.util.PrefSys
 import twitter4j.Twitter
 import twitter4j.TwitterFactory
-import twitter4j.auth.AccessToken
+import twitter4j.AccessToken
 
 internal class TwitterServiceImpl(
     context: Context,

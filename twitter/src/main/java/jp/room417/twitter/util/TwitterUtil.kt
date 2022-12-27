@@ -3,9 +3,9 @@ package jp.room417.twitter.util
 import android.content.Context
 import jp.room417.common.extension.letWith
 import jp.room417.common.util.PrefSys
+import twitter4j.AccessToken
 import twitter4j.Twitter
 import twitter4j.TwitterFactory
-import twitter4j.auth.AccessToken
 
 @Deprecated(
     "Use `TwitterService`",
@@ -54,8 +54,7 @@ object TwitterUtil {
      */
     @JvmStatic
     private fun loadAccessToken(context: Context): AccessToken? = PrefSys(context).let {
-        it.getPrefString(TOKEN)?.letWith(it.getPrefString(TOKEN_SECRET)) {
-            token, tokenSecret ->
+        it.getPrefString(TOKEN)?.letWith(it.getPrefString(TOKEN_SECRET)) { token, tokenSecret ->
             AccessToken(token, tokenSecret)
         }
     }
