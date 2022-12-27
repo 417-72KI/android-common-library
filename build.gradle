@@ -5,9 +5,9 @@ buildscript {
         appcompat_version = '1.5.1'
         coroutines_version = '1.6.4'
         min_sdk_version = 23
-        target_sdk_version = 32
-        compile_sdk_version = 32
-        build_tools_version = "30.0.3"
+        target_sdk_version = 33
+        compile_sdk_version = 33
+        build_tools_version = "33.0.0"
     }
     repositories {
         google()
