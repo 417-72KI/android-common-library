@@ -3,12 +3,14 @@ package jp.room417.common.component.base
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.activity.ComponentActivity
 import androidx.annotation.ContentView
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 
 open class BaseActivity : AppCompatActivity {
     constructor() : super()
+
     @ContentView
     constructor(@LayoutRes layoutId: Int) : super(layoutId)
 
@@ -53,4 +55,8 @@ open class BaseActivity : AppCompatActivity {
     protected fun showToast(resId: Int) {
         Toast.makeText(this, resId, Toast.LENGTH_SHORT).show()
     }
+}
+
+fun ComponentActivity.debugLog(msg: String) {
+    Log.d(javaClass.simpleName, msg)
 }
