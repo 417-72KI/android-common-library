@@ -12,6 +12,11 @@ internal class TwitterServiceImpl(
     apiKey: String,
     secret: String
 ) : TwitterService {
+    companion object {
+        private const val TOKEN = "twitter_token"
+        private const val TOKEN_SECRET = "twitter_token_secret"
+    }
+
     override val twitter: Twitter
 
     private val prefSys = PrefSys(context)
@@ -47,10 +52,5 @@ internal class TwitterServiceImpl(
         getPrefString(TOKEN)?.letWith(getPrefString(TOKEN_SECRET)) { token, tokenSecret ->
             AccessToken(token, tokenSecret)
         }
-    }
-
-    companion object {
-        private const val TOKEN = "twitter_token"
-        private const val TOKEN_SECRET = "twitter_token_secret"
     }
 }
