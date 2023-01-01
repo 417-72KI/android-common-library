@@ -3,7 +3,7 @@ package jp.room417.twitter.service
 import android.content.Context
 import jp.room417.common.extension.letWith
 import jp.room417.common.util.PrefSys
-import jp.room417.twitter4k.Twitter
+import jp.room417.twitter4kt.Twitter
 import twitter4j.auth.AccessToken
 
 internal class TwitterServiceImpl(

@@ -1,6 +1,6 @@
 package jp.room417.twitter.extension
 
-import jp.room417.twitter4k.Twitter
+import jp.room417.twitter4kt.Twitter
 import twitter4j.TwitterException
 
 val Twitter.isAuthorized: Boolean

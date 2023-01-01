@@ -10,7 +10,7 @@ import jp.room417.twitter.extension.isAuthorized
 import jp.room417.twitter.service.DefaultTwitterServiceFactory
 import jp.room417.twitter.service.TwitterService
 import jp.room417.twitter.service.TwitterServiceFactory
-import jp.room417.twitter4k.Twitter
+import jp.room417.twitter4kt.Twitter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

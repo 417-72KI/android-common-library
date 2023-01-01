@@ -1,6 +1,6 @@
 package jp.room417.twitter.service
 
-import jp.room417.twitter4k.Twitter
+import jp.room417.twitter4kt.Twitter
 import twitter4j.auth.AccessToken
 
 interface TwitterService {
