@@ -36,6 +36,21 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+
+        repositories {
+            maven {
+                url 'https://maven.pkg.github.com/417-72KI/Twitter4K'
+                credentials {
+                    username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_USER")
+                    password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
+                }
+            }
+        }
+
+        configurations.all {
+            // Don't cache changing modules at all.
+            resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+        }
     }
 
     ktlint {
