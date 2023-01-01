@@ -1,11 +1,11 @@
 package jp.room417.twitter.extension
 
-import twitter4j.Twitter
+import jp.room417.twitter4k.Twitter
 import twitter4j.TwitterException
 
 val Twitter.isAuthorized: Boolean
     get() = try {
-        oAuthAccessToken != null
+        origin.oAuthAccessToken != null
     } catch (e: Exception) {
         when (e) {
             is TwitterException, is IllegalStateException -> false

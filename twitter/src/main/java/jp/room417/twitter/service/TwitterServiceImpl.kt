@@ -3,8 +3,7 @@ package jp.room417.twitter.service
 import android.content.Context
 import jp.room417.common.extension.letWith
 import jp.room417.common.util.PrefSys
-import twitter4j.Twitter
-import twitter4j.TwitterFactory
+import jp.room417.twitter4k.Twitter
 import twitter4j.auth.AccessToken
 
 internal class TwitterServiceImpl(
@@ -19,15 +18,20 @@ internal class TwitterServiceImpl(
 
     override val twitter: Twitter
 
+    override val origin: twitter4j.Twitter
+        get() = twitter.origin
+
     private val prefSys = PrefSys(context)
 
     init {
-        val factory = TwitterFactory()
-        twitter = factory.instance
-        twitter.setOAuthConsumer(apiKey, secret)
-        if (hasAccessToken) {
-            twitter.oAuthAccessToken = loadAccessToken()
-        }
+        twitter = Twitter.Builder()
+            .setOAuthConsumer(apiKey, secret)
+            .apply {
+                loadAccessToken()?.let {
+                    setOAuthAccessToken(it)
+                }
+            }
+            .build()
     }
 
     override val hasAccessToken: Boolean
@@ -45,7 +49,7 @@ internal class TwitterServiceImpl(
             removePref(TOKEN)
             removePref(TOKEN_SECRET)
         }
-        twitter.oAuthAccessToken = null
+        origin.oAuthAccessToken = null
     }
 
     private fun loadAccessToken(): AccessToken? = prefSys.run {
