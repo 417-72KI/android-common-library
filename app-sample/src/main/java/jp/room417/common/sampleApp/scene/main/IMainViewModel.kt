@@ -5,7 +5,7 @@ import jp.room417.common.util.PrefSys
 
 interface IMainViewModel {
     val prefSys: PrefSys
-    val hasAccessToken: Boolean
+    val hasAccessToken: State<Boolean>
 
     val text: State<String>
     val isLoading: State<Boolean>

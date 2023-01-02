@@ -19,9 +19,7 @@ class MainViewModel @Inject constructor(
 ) : AndroidViewModel(application), IMainViewModel {
     override val prefSys = PrefSys(application)
 
-    override val hasAccessToken
-        get() = twitterService.hasAccessToken
-
+    override val hasAccessToken = mutableStateOf(twitterService.hasAccessToken)
     override val text = mutableStateOf("")
     override val isLoading = mutableStateOf(false)
     override val error = mutableStateOf<Exception?>(null)
@@ -55,6 +53,7 @@ class MainViewModel @Inject constructor(
 
     override fun resetAuth() {
         twitterService.clearAccessToken()
+        hasAccessToken.value = false
     }
 }
 
