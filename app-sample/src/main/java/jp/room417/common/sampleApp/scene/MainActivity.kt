@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             val viewModel: MainViewModel = hiltViewModel()
             debugLog("${viewModel.prefSys.getPrefBoolean("foo")}")
-            debugLog("hasAccessToken: ${viewModel.hasAccessToken}")
+            debugLog("hasAccessToken: ${viewModel.hasAccessToken.value}")
 
             AndroidcommonlibraryTheme {
                 MainScreen(viewModel) {

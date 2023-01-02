@@ -8,9 +8,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jp.room417.common.util.PrefSys
 import jp.room417.twitter.service.TwitterService
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import twitter4j.TwitterException
 import javax.inject.Inject
 
@@ -21,9 +19,7 @@ class MainViewModel @Inject constructor(
 ) : AndroidViewModel(application), IMainViewModel {
     override val prefSys = PrefSys(application)
 
-    override val hasAccessToken
-        get() = twitterService.hasAccessToken
-
+    override val hasAccessToken = mutableStateOf(twitterService.hasAccessToken)
     override val text = mutableStateOf("")
     override val isLoading = mutableStateOf(false)
     override val error = mutableStateOf<Exception?>(null)
@@ -39,30 +35,25 @@ class MainViewModel @Inject constructor(
     override fun post(text: String) {
         viewModelScope.launch {
             isLoading.value = true
-            withContext(Dispatchers.IO) {
-                try {
-                    twitterService.twitter.updateStatus(text)
-                    withContext(Dispatchers.Main) {
-                        Toast.makeText(
-                            getApplication<Application>().applicationContext,
-                            "Post Success!",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
-                } catch (e: TwitterException) {
-                    error.value = e
-                } finally {
-                    withContext(Dispatchers.Main) {
-                        isLoading.value = false
-                        onChangeText("")
-                    }
-                }
+            try {
+                twitterService.twitter.tweets().updateStatus(text)
+                Toast.makeText(
+                    getApplication<Application>().applicationContext,
+                    "Post Success!",
+                    Toast.LENGTH_LONG
+                ).show()
+            } catch (e: TwitterException) {
+                error.value = e
+            } finally {
+                isLoading.value = false
+                onChangeText("")
             }
         }
     }
 
     override fun resetAuth() {
         twitterService.clearAccessToken()
+        hasAccessToken.value = false
     }
 }
 

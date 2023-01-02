@@ -1,6 +1,5 @@
 package jp.room417.common.sampleApp.scene.main
 
-import android.app.Activity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -13,7 +12,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
@@ -51,7 +49,8 @@ fun MainScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            if (viewModel.hasAccessToken) {
+            val hasAccessToken by viewModel.hasAccessToken
+            if (hasAccessToken) {
                 val focusManager = LocalFocusManager.current
                 Greeting("Twitter")
                 val text by viewModel.text
@@ -68,10 +67,8 @@ fun MainScreen(
                 ) {
                     Text("Post")
                 }
-                val activity = LocalContext.current as? Activity
                 Button(onClick = {
                     viewModel.resetAuth()
-                    activity?.finishAffinity()
                 }) {
                     Text("Reset authentication")
                 }

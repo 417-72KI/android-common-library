@@ -10,11 +10,10 @@ import jp.room417.twitter.extension.isAuthorized
 import jp.room417.twitter.service.DefaultTwitterServiceFactory
 import jp.room417.twitter.service.TwitterService
 import jp.room417.twitter.service.TwitterServiceFactory
+import jp.room417.twitter4kt.Twitter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import twitter4j.Twitter
 import twitter4j.auth.AccessToken
 import twitter4j.auth.RequestToken
 
@@ -31,7 +30,7 @@ abstract class OAuthBaseActivity(
         get() = twitterService.twitter
 
     private var requestToken: RequestToken? = null
-    private val scope = CoroutineScope(Dispatchers.Default)
+    private val scope = CoroutineScope(Dispatchers.Main)
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,18 +73,13 @@ abstract class OAuthBaseActivity(
      * OAuth認証（厳密には認可）を開始します。
      */
     private suspend fun startAuthorize() {
-        val url = withContext(Dispatchers.Default) {
-            requestToken = twitter.getOAuthRequestToken(callbackURL)
-            requestToken?.authenticationURL?.let { Uri.parse(it) }
-        }
-        withContext(Dispatchers.Main) {
-            when (url) {
-                null -> {
-                    showToast(R.string.undefined_error)
-                    callBack()
-                }
-                else -> startActivity(Intent(Intent.ACTION_VIEW, url))
+        requestToken = twitter.getOAuthRequestToken(callbackURL)
+        when (val url = requestToken?.authenticationURL?.let { Uri.parse(it) }) {
+            null -> {
+                showToast(R.string.undefined_error)
+                callBack()
             }
+            else -> startActivity(Intent(Intent.ACTION_VIEW, url))
         }
     }
 
@@ -100,20 +94,18 @@ abstract class OAuthBaseActivity(
         } ?: return callBack()
 
         scope.launch {
-            val accessToken = withContext(Dispatchers.Default) {
-                twitter.getOAuthAccessToken(requestToken, verifier)
+            val accessToken = requestToken?.let {
+                twitter.getOAuthAccessToken(it, verifier)
             }
-            withContext(Dispatchers.Main) {
-                when (accessToken) {
-                    null -> {
-                        // 認証失敗。。。
-                        showToast(R.string.auth_failed)
-                    }
-                    else -> {
-                        // 認証成功！
-                        showToast(R.string.auth_success)
-                        successOAuth(accessToken)
-                    }
+            when (accessToken) {
+                null -> {
+                    // 認証失敗。。。
+                    showToast(R.string.auth_failed)
+                }
+                else -> {
+                    // 認証成功！
+                    showToast(R.string.auth_success)
+                    successOAuth(accessToken)
                 }
             }
         }
