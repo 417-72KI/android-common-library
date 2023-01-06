@@ -48,7 +48,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
 
-    api 'jp.room417:twitter4kt:0.0.1'
+    api 'io.github.417-72ki:twitter4kt:0.1.0'
 
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.1'
     testImplementation 'org.assertj:assertj-core:3.23.1'
