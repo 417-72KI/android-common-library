@@ -5,7 +5,6 @@ import twitter4j.auth.AccessToken
 
 interface TwitterService {
     val twitter: Twitter
-    val origin: twitter4j.Twitter
     val hasAccessToken: Boolean
 
     fun storeAccessToken(accessToken: AccessToken)

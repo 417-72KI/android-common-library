@@ -18,9 +18,6 @@ internal class TwitterServiceImpl(
 
     override val twitter: Twitter
 
-    override val origin: twitter4j.Twitter
-        get() = twitter.origin
-
     private val prefSys = PrefSys(context)
 
     init {
@@ -49,7 +46,7 @@ internal class TwitterServiceImpl(
             removePref(TOKEN)
             removePref(TOKEN_SECRET)
         }
-        origin.oAuthAccessToken = null
+        twitter.origin.oAuthAccessToken = null
     }
 
     private fun loadAccessToken(): AccessToken? = prefSys.run {
