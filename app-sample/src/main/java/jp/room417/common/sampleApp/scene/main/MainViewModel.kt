@@ -59,7 +59,7 @@ class MainViewModel @Inject constructor(
 }
 
 // FIXME: Mock for Context
-//class FakeMainViewModel : IMainViewModel {
+// class FakeMainViewModel : IMainViewModel {
 //    override val prefSys: PrefSys
 //        get() = PrefSys(LocalContext.current)
 //    override val hasAccessToken: Boolean
@@ -68,4 +68,4 @@ class MainViewModel @Inject constructor(
 //    override fun post(text: String) {
 //        TODO("Not yet implemented")
 //    }
-//}
+// }
