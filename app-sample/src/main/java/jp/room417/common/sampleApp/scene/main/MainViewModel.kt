@@ -33,10 +33,11 @@ class MainViewModel @Inject constructor(
     }
 
     override fun post(text: String) {
+        val twitter = twitterService.twitter
         viewModelScope.launch {
             isLoading.value = true
             try {
-                twitterService.twitter.tweets().updateStatus(text)
+                twitter.v1.tweets().updateStatus(text)
                 Toast.makeText(
                     getApplication<Application>().applicationContext,
                     "Post Success!",
