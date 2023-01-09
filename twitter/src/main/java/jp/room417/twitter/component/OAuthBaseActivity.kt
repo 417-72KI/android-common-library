@@ -77,7 +77,6 @@ abstract class OAuthBaseActivity(
      */
     private suspend fun startAuthorize() {
         requestToken = oAuthAuthorization.getOAuthRequestToken(callbackURL)
-        debugLog("Request token: $requestToken")
         when (val url = requestToken?.authenticationURL?.let { Uri.parse(it) }) {
             null -> {
                 showToast(R.string.undefined_error)
