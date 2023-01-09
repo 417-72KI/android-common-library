@@ -33,10 +33,11 @@ class MainViewModel @Inject constructor(
     }
 
     override fun post(text: String) {
+        val twitter = twitterService.twitter
         viewModelScope.launch {
             isLoading.value = true
             try {
-                twitterService.twitter.tweets().updateStatus(text)
+                twitter.v1.tweets().updateStatus(text)
                 Toast.makeText(
                     getApplication<Application>().applicationContext,
                     "Post Success!",
@@ -58,7 +59,7 @@ class MainViewModel @Inject constructor(
 }
 
 // FIXME: Mock for Context
-//class FakeMainViewModel : IMainViewModel {
+// class FakeMainViewModel : IMainViewModel {
 //    override val prefSys: PrefSys
 //        get() = PrefSys(LocalContext.current)
 //    override val hasAccessToken: Boolean
@@ -67,4 +68,4 @@ class MainViewModel @Inject constructor(
 //    override fun post(text: String) {
 //        TODO("Not yet implemented")
 //    }
-//}
+// }

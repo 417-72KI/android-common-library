@@ -10,7 +10,6 @@ import jp.room417.twitter.extension.isAuthorized
 import jp.room417.twitter.service.DefaultTwitterServiceFactory
 import jp.room417.twitter.service.TwitterService
 import jp.room417.twitter.service.TwitterServiceFactory
-import jp.room417.twitter4kt.Twitter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -26,8 +25,10 @@ abstract class OAuthBaseActivity(
     private lateinit var apiSecret: String
 
     private lateinit var twitterService: TwitterService
-    private val twitter: Twitter
+    private val twitter
         get() = twitterService.twitter
+    private val oAuthAuthorization
+        get() = twitterService.oAuthAuthorization
 
     private var requestToken: RequestToken? = null
     private val scope = CoroutineScope(Dispatchers.Main)
@@ -55,17 +56,19 @@ abstract class OAuthBaseActivity(
      */
     private fun setCallBackActivity() {
         val extras = intent.extras ?: throw IllegalStateException("No extras set in intent.")
-        val cls = extras[IntentKey.CALLBACK_ACTIVITY] as? Class<*>
-        callbackActivity = if (cls != null && Activity::class.java.isAssignableFrom(cls)) {
+        val className = extras.getString(IntentKey.CALLBACK_ACTIVITY)
+            ?: throw IllegalStateException("No Activity set as callback. Intent for this activity must be created by `TwitterOAuthActivity.newIntent()`. ")
+        val cls = Class.forName(className)
+        callbackActivity = if (Activity::class.java.isAssignableFrom(cls)) {
             cls
         } else {
-            throw IllegalStateException("No Activity set as callback. Intent for this activity must be created by `TwitterOAuthActivity.newIntent()`. ")
+            throw IllegalStateException("Invalid class `$cls` was set as callback Activity.")
         }
-        callbackURL = extras[IntentKey.CALLBACK_URL] as? String
+        callbackURL = extras.getString(IntentKey.CALLBACK_URL)
             ?: throw IllegalStateException("No callback URL set. Intent for this activity must be created by `TwitterOAuthActivity.newIntent()`. ")
-        apiKey = extras[IntentKey.API_KEY] as? String
+        apiKey = extras.getString(IntentKey.API_KEY)
             ?: throw IllegalStateException("No API key set. Intent for this activity must be created by `TwitterOAuthActivity.newIntent()`. ")
-        apiSecret = extras[IntentKey.API_SECRET] as? String
+        apiSecret = extras.getString(IntentKey.API_SECRET)
             ?: throw IllegalStateException("No API secret set. Intent for this activity must be created by `TwitterOAuthActivity.newIntent()`. ")
     }
 
@@ -73,7 +76,7 @@ abstract class OAuthBaseActivity(
      * OAuth認証（厳密には認可）を開始します。
      */
     private suspend fun startAuthorize() {
-        requestToken = twitter.getOAuthRequestToken(callbackURL)
+        requestToken = oAuthAuthorization.getOAuthRequestToken(callbackURL)
         when (val url = requestToken?.authenticationURL?.let { Uri.parse(it) }) {
             null -> {
                 showToast(R.string.undefined_error)
@@ -95,7 +98,7 @@ abstract class OAuthBaseActivity(
 
         scope.launch {
             val accessToken = requestToken?.let {
-                twitter.getOAuthAccessToken(it, verifier)
+                oAuthAuthorization.getOAuthAccessToken(it, verifier)
             }
             when (accessToken) {
                 null -> {
