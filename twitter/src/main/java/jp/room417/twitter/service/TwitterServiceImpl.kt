@@ -5,7 +5,7 @@ import jp.room417.common.extension.letWith
 import jp.room417.common.util.PrefSys
 import jp.room417.twitter4kt.Twitter
 import jp.room417.twitter4kt.auth.OAuthAuthorization
-import twitter4j.auth.AccessToken
+import twitter4j.AccessToken
 
 internal class TwitterServiceImpl(
     context: Context,
@@ -17,22 +17,19 @@ internal class TwitterServiceImpl(
         private const val TOKEN_SECRET = "twitter_token_secret"
     }
 
-    override val twitter: Twitter
-    override val oAuthAuthorization: OAuthAuthorization
+    override val twitter
+        get() = loadAccessToken()?.let { token ->
+            Twitter.Builder(
+                consumerKey = apiKey,
+                consumerSecret = secret
+            ).setOAuthAccessToken(token.first, token.second)
+                .build()
+        }
+
+    override val oAuthAuthorization
         get() = OAuthAuthorization(consumerKey = apiKey, consumerSecret = secret)
 
     private val prefSys = PrefSys(context)
-
-    init {
-        twitter = Twitter.Builder()
-            .setOAuthConsumer(apiKey, secret)
-            .apply {
-                loadAccessToken()?.let {
-                    setOAuthAccessToken(it)
-                }
-            }
-            .build()
-    }
 
     override val hasAccessToken: Boolean
         get() = loadAccessToken() != null
@@ -49,12 +46,11 @@ internal class TwitterServiceImpl(
             removePref(TOKEN)
             removePref(TOKEN_SECRET)
         }
-        twitter.clearOAuthAccessToken()
     }
 
-    private fun loadAccessToken(): AccessToken? = prefSys.run {
+    private fun loadAccessToken(): Pair<String, String>? = prefSys.run {
         getPrefString(TOKEN)?.letWith(getPrefString(TOKEN_SECRET)) { token, tokenSecret ->
-            AccessToken(token, tokenSecret)
+            Pair(token, tokenSecret)
         }
     }
 }
