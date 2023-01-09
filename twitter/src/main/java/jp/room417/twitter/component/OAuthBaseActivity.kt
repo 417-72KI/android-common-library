@@ -10,7 +10,6 @@ import jp.room417.twitter.extension.isAuthorized
 import jp.room417.twitter.service.DefaultTwitterServiceFactory
 import jp.room417.twitter.service.TwitterService
 import jp.room417.twitter.service.TwitterServiceFactory
-import jp.room417.twitter4kt.Twitter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -26,8 +25,10 @@ abstract class OAuthBaseActivity(
     private lateinit var apiSecret: String
 
     private lateinit var twitterService: TwitterService
-    private val twitter: Twitter
+    private val twitter
         get() = twitterService.twitter
+    private val oAuthAuthorization
+        get() = twitterService.oAuthAuthorization
 
     private var requestToken: RequestToken? = null
     private val scope = CoroutineScope(Dispatchers.Main)
@@ -73,7 +74,8 @@ abstract class OAuthBaseActivity(
      * OAuth認証（厳密には認可）を開始します。
      */
     private suspend fun startAuthorize() {
-        requestToken = twitter.getOAuthRequestToken(callbackURL)
+        requestToken = oAuthAuthorization.getOAuthRequestToken(callbackURL)
+        debugLog("Request token: $requestToken")
         when (val url = requestToken?.authenticationURL?.let { Uri.parse(it) }) {
             null -> {
                 showToast(R.string.undefined_error)
@@ -95,7 +97,7 @@ abstract class OAuthBaseActivity(
 
         scope.launch {
             val accessToken = requestToken?.let {
-                twitter.getOAuthAccessToken(it, verifier)
+                oAuthAuthorization.getOAuthAccessToken(it, verifier)
             }
             when (accessToken) {
                 null -> {

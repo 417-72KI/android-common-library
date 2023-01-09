@@ -49,7 +49,7 @@ internal class TwitterServiceImpl(
             removePref(TOKEN)
             removePref(TOKEN_SECRET)
         }
-        twitter.origin.oAuthAccessToken = null
+        twitter.clearOAuthAccessToken()
     }
 
     private fun loadAccessToken(): AccessToken? = prefSys.run {
