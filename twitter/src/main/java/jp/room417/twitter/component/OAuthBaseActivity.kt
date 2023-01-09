@@ -56,11 +56,13 @@ abstract class OAuthBaseActivity(
      */
     private fun setCallBackActivity() {
         val extras = intent.extras ?: throw IllegalStateException("No extras set in intent.")
-        val cls = extras[IntentKey.CALLBACK_ACTIVITY] as? Class<*>
-        callbackActivity = if (cls != null && Activity::class.java.isAssignableFrom(cls)) {
+        val className = extras.getString(IntentKey.CALLBACK_ACTIVITY)
+            ?: throw IllegalStateException("No Activity set as callback. Intent for this activity must be created by `TwitterOAuthActivity.newIntent()`. ")
+        val cls = Class.forName(className)
+        callbackActivity = if (Activity::class.java.isAssignableFrom(cls)) {
             cls
         } else {
-            throw IllegalStateException("No Activity set as callback. Intent for this activity must be created by `TwitterOAuthActivity.newIntent()`. ")
+            throw IllegalStateException("Invalid class `$cls` was set as callback Activity.")
         }
         callbackURL = extras.getString(IntentKey.CALLBACK_URL)
             ?: throw IllegalStateException("No callback URL set. Intent for this activity must be created by `TwitterOAuthActivity.newIntent()`. ")
