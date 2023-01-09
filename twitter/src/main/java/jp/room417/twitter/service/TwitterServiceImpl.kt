@@ -4,12 +4,13 @@ import android.content.Context
 import jp.room417.common.extension.letWith
 import jp.room417.common.util.PrefSys
 import jp.room417.twitter4kt.Twitter
+import jp.room417.twitter4kt.auth.OAuthAuthorization
 import twitter4j.auth.AccessToken
 
 internal class TwitterServiceImpl(
     context: Context,
-    apiKey: String,
-    secret: String
+    private val apiKey: String,
+    private val secret: String
 ) : TwitterService {
     companion object {
         private const val TOKEN = "twitter_token"
@@ -17,6 +18,8 @@ internal class TwitterServiceImpl(
     }
 
     override val twitter: Twitter
+    override val oAuthAuthorization: OAuthAuthorization
+        get() = OAuthAuthorization(consumerKey = apiKey, consumerSecret = secret)
 
     private val prefSys = PrefSys(context)
 
