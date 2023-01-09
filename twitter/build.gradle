@@ -51,7 +51,7 @@ dependencies {
     api 'io.github.417-72ki:twitter4kt:0.2.1'
 
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.1'
-    testImplementation 'org.assertj:assertj-core:3.23.1'
+    testImplementation 'org.assertj:assertj-core:3.24.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
