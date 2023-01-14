@@ -13,8 +13,8 @@ import jp.room417.twitter.service.TwitterServiceFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import twitter4j.auth.AccessToken
-import twitter4j.auth.RequestToken
+import twitter4j.AccessToken
+import twitter4j.RequestToken
 
 abstract class OAuthBaseActivity(
     private val factory: TwitterServiceFactory = DefaultTwitterServiceFactory()

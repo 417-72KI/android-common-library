@@ -33,7 +33,7 @@ class MainViewModel @Inject constructor(
     }
 
     override fun post(text: String) {
-        val twitter = twitterService.twitter
+        val twitter = twitterService.twitter ?: return
         viewModelScope.launch {
             isLoading.value = true
             try {
