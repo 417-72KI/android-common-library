@@ -87,7 +87,8 @@ task createTagFromVersion {
 
         def canContinue = false
         while (!canContinue) {
-            switch (System.console().readLine("set tag for `${version}`? [y/N]")) {
+            println("[Confirm] Set tag for `${version}`? [y/N] >")
+            switch (System.in.newReader().readLine()) {
                 case ["y", "Y"]:
                     canContinue = true
                     break
@@ -95,7 +96,6 @@ task createTagFromVersion {
                     throw new GradleException("Cancelled.")
             }
         }
-
         def retValue = ['sh', '-c', "git tag ${version} main"].execute().waitFor()
         if (retValue != 0) {
             throw new GradleException("invalid return code on `git tag`: ${retValue}")
