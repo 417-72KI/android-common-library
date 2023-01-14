@@ -1,3 +1,4 @@
+@file:Suppress("ktlint:filename")
 package jp.room417.common.sampleApp.di
 
 import android.content.Context
