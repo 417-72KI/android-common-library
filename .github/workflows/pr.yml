@@ -29,10 +29,6 @@ jobs:
         key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
         restore-keys: |
           ${{ runner.os }}-gradle-
-    - name: Set up Ruby from .ruby-version
-      uses: ruby/setup-ruby@v1
-      with:
-        bundler-cache: true
     - name: build
       run: |
         ./gradlew --continue clean
@@ -40,7 +36,7 @@ jobs:
         ./gradlew --continue build --stacktrace 2>build/reports/build-error-log.txt
     - name: lint and test
       if: success()
-      run: ./gradlew --continue clean ktlintCheck lintDebug testDebug --stacktrace
+      run: ./gradlew --continue ktlintCheck lintDebug testDebug --stacktrace
     - name: 'Upload lint and test reports'
       uses: actions/upload-artifact@v3
       if: cancelled() != true
@@ -50,9 +46,11 @@ jobs:
           **/build/reports
           **/build/test-results
         retention-days: 7
-    - name: Run Danger
+    - name: Run Danger-Kotlin
       if: cancelled() != true
       env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         JOB_STATUS: ${{ job.status }}
-      run: |
-        bundle exec danger --remove-previous-comments --fail-on-errors=true
+      uses: docker://ghcr.io/danger/danger-kotlin:1.2.0
+      with:
+          args: --failOnErrors --no-publish-check

@@ -6,6 +6,10 @@ on:
     tags:
       - v*
     paths-ignore:
+      - .github/workflows/pr.yml
+      - .gitattributes
+      - .gitignore
+      - Dangerfile.df.kts
       - README.md
       - LICENSE
 concurrency:
