@@ -55,9 +55,11 @@ fun Path.forEachDirectoryEntryRecursive(glob: String, action: (Path) -> Unit) {
                 it.forEachDirectoryEntryRecursive(glob.removePrefix("$subdir/"), action)
             }
         }
-        "**" -> forEachDirectoryEntry(glob = "**") {
-            if (it.isDirectory()) {
-                it.forEachDirectoryEntryRecursive(glob.removePrefix("$subdir/"), action)
+        "**" -> {
+            forEachDirectoryEntryRecursive(glob.removePrefix("$subdir/"), action)
+            forEachDirectoryEntry(glob = "**") {
+                if (it.isDirectory())
+                    it.forEachDirectoryEntryRecursive(glob, action)
             }
         }
         else -> resolve(subdir)
