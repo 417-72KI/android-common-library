@@ -31,14 +31,12 @@ danger(args) {
             }
         }
     }
-    path.forEachDirectoryEntryRecursive(glob = "**/build/reports/ktlint/**/ktlint*.xml") {
-        CheckstyleFormat.basePath = if (System.getenv("CI") == "true") {
-            Path("/home/runner/work/android-common-library/android-common-library")
-        } else {
-            Path(System.getenv("WORKING_DIR") ?: System.getProperty("user.dir"))
-        }
-        CheckstyleFormat.report(it)
+    CheckstyleFormat.basePath = if (System.getenv("CI") == "true") {
+        Path("/home/runner/work/android-common-library/android-common-library")
+    } else {
+        Path(System.getenv("WORKING_DIR") ?: System.getProperty("user.dir"))
     }
+    CheckstyleFormat.reportKtlint()
 
     path.forEachDirectoryEntryRecursive(glob = "**/build/test-results/*/*.xml") {
         JUnitPlugin.parse(File(it.toUri()))
