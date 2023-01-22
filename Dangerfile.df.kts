@@ -1,6 +1,6 @@
 @file:Repository("https://repo.maven.apache.org/maven2/")
 @file:DependsOn("io.github.ackeecz:danger-kotlin-junit:0.1.0")
-@file:DependsOn("io.github.417-72ki:danger-kotlin-checkstyle_format:0.0.2")
+@file:DependsOn("io.github.417-72ki:danger-kotlin-checkstyle_format:0.1.0")
 @file:OptIn(ExperimentalPathApi::class)
 
 import io.github.ackeecz.danger.junit.JUnitPlugin
