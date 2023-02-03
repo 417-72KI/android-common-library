@@ -5,6 +5,7 @@
 
 import io.github.ackeecz.danger.junit.JUnitPlugin
 import jp.room417.danger_kotlin_checkstyle_format.CheckstyleFormat
+import jp.room417.danger_kotlin_checkstyle_format.ktlint.reportKtlint
 import systems.danger.kotlin.*
 import java.io.File
 import java.io.IOException
