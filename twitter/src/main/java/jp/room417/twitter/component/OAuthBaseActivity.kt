@@ -57,7 +57,10 @@ abstract class OAuthBaseActivity(
     private fun setCallBackActivity() {
         val extras = intent.extras ?: throw IllegalStateException("No extras set in intent.")
         val className = extras.getString(IntentKey.CALLBACK_ACTIVITY)
-            ?: throw IllegalStateException("No Activity set as callback. Intent for this activity must be created by `TwitterOAuthActivity.newIntent()`. ")
+            ?: throw IllegalStateException(
+                "No Activity set as callback." +
+                    " Intent for this activity must be created by `TwitterOAuthActivity.newIntent()`. "
+            )
         val cls = Class.forName(className)
         callbackActivity = if (Activity::class.java.isAssignableFrom(cls)) {
             cls
@@ -65,11 +68,20 @@ abstract class OAuthBaseActivity(
             throw IllegalStateException("Invalid class `$cls` was set as callback Activity.")
         }
         callbackURL = extras.getString(IntentKey.CALLBACK_URL)
-            ?: throw IllegalStateException("No callback URL set. Intent for this activity must be created by `TwitterOAuthActivity.newIntent()`. ")
+            ?: throw IllegalStateException(
+                "No callback URL set. " +
+                    "Intent for this activity must be created by `TwitterOAuthActivity.newIntent()`. "
+            )
         apiKey = extras.getString(IntentKey.API_KEY)
-            ?: throw IllegalStateException("No API key set. Intent for this activity must be created by `TwitterOAuthActivity.newIntent()`. ")
+            ?: throw IllegalStateException(
+                "No API key set. " +
+                    "Intent for this activity must be created by `TwitterOAuthActivity.newIntent()`. "
+            )
         apiSecret = extras.getString(IntentKey.API_SECRET)
-            ?: throw IllegalStateException("No API secret set. Intent for this activity must be created by `TwitterOAuthActivity.newIntent()`. ")
+            ?: throw IllegalStateException(
+                "No API secret set. " +
+                    "Intent for this activity must be created by `TwitterOAuthActivity.newIntent()`. "
+            )
     }
 
     /**
