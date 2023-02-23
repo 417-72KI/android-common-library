@@ -10,7 +10,7 @@ import twitter4j.AccessToken
 internal class TwitterServiceImpl(
     context: Context,
     private val apiKey: String,
-    private val secret: String
+    private val secret: String,
 ) : TwitterService {
     companion object {
         private const val TOKEN = "twitter_token"
@@ -21,7 +21,7 @@ internal class TwitterServiceImpl(
         get() = loadAccessToken()?.let { token ->
             Twitter.Builder(
                 consumerKey = apiKey,
-                consumerSecret = secret
+                consumerSecret = secret,
             ).setOAuthAccessToken(token.first, token.second)
                 .build()
         }

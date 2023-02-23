@@ -21,7 +21,7 @@ class LiveDataExtensionTest {
     private class IsTrueTestCase : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.arguments(true, true),
-            Arguments.arguments(null, false)
+            Arguments.arguments(null, false),
         )
     }
 }

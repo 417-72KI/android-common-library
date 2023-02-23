@@ -22,7 +22,7 @@ class NullableExtensionTest {
             arguments(null, null, null),
             arguments(null, 1, null),
             arguments("foo", null, null),
-            arguments("bar", 1, "bar: 1")
+            arguments("bar", 1, "bar: 1"),
         )
     }
 }

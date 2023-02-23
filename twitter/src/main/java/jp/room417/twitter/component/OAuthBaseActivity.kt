@@ -17,7 +17,7 @@ import twitter4j.AccessToken
 import twitter4j.RequestToken
 
 abstract class OAuthBaseActivity(
-    private val factory: TwitterServiceFactory = DefaultTwitterServiceFactory()
+    private val factory: TwitterServiceFactory = DefaultTwitterServiceFactory(),
 ) : BaseActivity() {
     private lateinit var callbackURL: String
     private lateinit var callbackActivity: Class<*>
@@ -59,7 +59,7 @@ abstract class OAuthBaseActivity(
         val className = extras.getString(IntentKey.CALLBACK_ACTIVITY)
             ?: throw IllegalStateException(
                 "No Activity set as callback." +
-                    " Intent for this activity must be created by `TwitterOAuthActivity.newIntent()`. "
+                    " Intent for this activity must be created by `TwitterOAuthActivity.newIntent()`. ",
             )
         val cls = Class.forName(className)
         callbackActivity = if (Activity::class.java.isAssignableFrom(cls)) {
@@ -70,17 +70,17 @@ abstract class OAuthBaseActivity(
         callbackURL = extras.getString(IntentKey.CALLBACK_URL)
             ?: throw IllegalStateException(
                 "No callback URL set. " +
-                    "Intent for this activity must be created by `TwitterOAuthActivity.newIntent()`. "
+                    "Intent for this activity must be created by `TwitterOAuthActivity.newIntent()`. ",
             )
         apiKey = extras.getString(IntentKey.API_KEY)
             ?: throw IllegalStateException(
                 "No API key set. " +
-                    "Intent for this activity must be created by `TwitterOAuthActivity.newIntent()`. "
+                    "Intent for this activity must be created by `TwitterOAuthActivity.newIntent()`. ",
             )
         apiSecret = extras.getString(IntentKey.API_SECRET)
             ?: throw IllegalStateException(
                 "No API secret set. " +
-                    "Intent for this activity must be created by `TwitterOAuthActivity.newIntent()`. "
+                    "Intent for this activity must be created by `TwitterOAuthActivity.newIntent()`. ",
             )
     }
 

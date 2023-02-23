@@ -20,13 +20,13 @@ import androidx.compose.ui.window.Dialog
 @Composable
 fun MainScreen(
     viewModel: IMainViewModel,
-    onAuthAction: () -> Unit = {}
+    onAuthAction: () -> Unit = {},
 ) {
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colors.background),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         viewModel.error.value?.let {
             ErrorAlert(it, onDismiss = viewModel::onClearError)
@@ -39,7 +39,7 @@ fun MainScreen(
                         .size(100.dp)
                         .clip(RoundedCornerShape(8.dp))
                         .background(Color.White),
-                    contentAlignment = Alignment.Center
+                    contentAlignment = Alignment.Center,
                 ) {
                     CircularProgressIndicator()
                 }
@@ -47,7 +47,7 @@ fun MainScreen(
         }
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+            verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             val hasAccessToken by viewModel.hasAccessToken
             if (hasAccessToken) {
@@ -59,11 +59,11 @@ fun MainScreen(
                     onValueChange = viewModel::onChangeText,
                     modifier = Modifier.padding(20.dp),
                     keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() }),
-                    keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done)
+                    keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done),
                 )
                 Button(
                     onClick = { viewModel.post(text) },
-                    enabled = text.isNotBlank()
+                    enabled = text.isNotBlank(),
                 ) {
                     Text("Post")
                 }
@@ -98,7 +98,7 @@ private fun ErrorAlert(e: Exception, onDismiss: () -> Unit) {
             Button(onClick = onDismiss) {
                 Text("OK")
             }
-        }
+        },
     )
 }
 

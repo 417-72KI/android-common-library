@@ -21,7 +21,7 @@ open class SingleLiveData<T>(initialValue: T? = null) : LiveData<T>() {
                     return@Observer
                 }
                 it?.let { observer(it) }
-            }
+            },
         )
 
     override fun observe(owner: LifecycleOwner, observer: Observer<in T>) =
@@ -35,7 +35,7 @@ open class SingleLiveData<T>(initialValue: T? = null) : LiveData<T>() {
                     return@Observer
                 }
                 it?.let { observer(it) }
-            }
+            },
         )
 
     override fun observeForever(observer: Observer<in T>) =

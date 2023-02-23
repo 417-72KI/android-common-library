@@ -15,7 +15,7 @@ class ErrorDialog internal constructor(
     private var message: String?,
     @StringRes private var onOkLabelResource: Int = R.string.ok,
     private var onOkLabel: String?,
-    private var onOk: () -> Unit
+    private var onOk: () -> Unit,
 ) : BaseDialog() {
     private val onOkListener: DialogInterface.OnClickListener
         get() = DialogInterface.OnClickListener { _, _ -> onOk() }
@@ -92,7 +92,7 @@ class ErrorDialog internal constructor(
             message,
             onOkLabelResource,
             onOkLabel,
-            onOk
+            onOk,
         )
     }
 }
