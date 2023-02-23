@@ -7,4 +7,9 @@ tag: test
 release: tag
 
 test:
-	./gradlew --continue ktlintCheck lintDebug testDebug --stacktrace
+	./gradlew --continue clean ktlintCheck lintDebug testDebug --stacktrace
+
+lint: test
+
+format:
+	./gradlew --continue clean ktlintFormat

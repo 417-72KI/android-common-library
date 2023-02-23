@@ -1,4 +1,5 @@
 @file:Suppress("ktlint:filename")
+
 package jp.room417.common.sampleApp.di
 
 import android.content.Context
@@ -19,6 +20,6 @@ object TwitterModule {
         DefaultTwitterServiceFactory().createService(
             context,
             apiKey = BuildConfig.TWITTER_API_KEY,
-            secret = BuildConfig.TWITTER_API_SECRET
+            secret = BuildConfig.TWITTER_API_SECRET,
         )
 }

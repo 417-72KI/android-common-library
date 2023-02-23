@@ -15,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     application: Application,
-    private val twitterService: TwitterService
+    private val twitterService: TwitterService,
 ) : AndroidViewModel(application), IMainViewModel {
     override val prefSys = PrefSys(application)
 
@@ -41,7 +41,7 @@ class MainViewModel @Inject constructor(
                 Toast.makeText(
                     getApplication<Application>().applicationContext,
                     "Post Success!",
-                    Toast.LENGTH_LONG
+                    Toast.LENGTH_LONG,
                 ).show()
             } catch (e: TwitterException) {
                 error.value = e

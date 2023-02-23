@@ -8,11 +8,8 @@ import jp.room417.danger_kotlin_checkstyle_format.CheckstyleFormat
 import systems.danger.kotlin.*
 import java.io.File
 import java.io.IOException
-import java.nio.file.FileSystems
-import java.nio.file.Files
 import java.nio.file.Path
 import kotlin.io.path.*
-import kotlin.streams.toList
 
 register plugin JUnitPlugin
 register plugin CheckstyleFormat
@@ -56,14 +53,16 @@ fun Path.forEachDirectoryEntryRecursive(glob: String, action: (Path) -> Unit) {
     if (!glob.contains("/")) return forEachDirectoryEntry(glob, action)
     when (val subdir = glob.split("/").first()) {
         "*" -> forEachDirectoryEntry(glob = "*") {
-            if (it.isDirectory())
-                it.forEachDirectoryEntryRecursive(glob.removePrefix("${subdir}/"), action)
+            if (it.isDirectory()) {
+                it.forEachDirectoryEntryRecursive(glob.removePrefix("$subdir/"), action)
+            }
         }
         "**" -> forEachDirectoryEntry(glob = "**") {
-            if (it.isDirectory())
-                it.forEachDirectoryEntryRecursive(glob.removePrefix("${subdir}/"), action)
+            if (it.isDirectory()) {
+                it.forEachDirectoryEntryRecursive(glob.removePrefix("$subdir/"), action)
+            }
         }
         else -> resolve(subdir)
-            .forEachDirectoryEntryRecursive(glob.removePrefix("${subdir}/"), action)
+            .forEachDirectoryEntryRecursive(glob.removePrefix("$subdir/"), action)
     }
 }

@@ -18,7 +18,7 @@ class ConfirmDialog internal constructor(
     private var onOk: () -> Unit,
     @StringRes private var onCancelLabelResource: Int = R.string.cancel,
     private var onCancelLabel: String?,
-    private var onCancel: () -> Unit
+    private var onCancel: () -> Unit,
 ) : BaseDialog() {
     private val onOkListener: DialogInterface.OnClickListener
         get() = DialogInterface.OnClickListener { _, _ -> onOk() }
@@ -120,7 +120,7 @@ class ConfirmDialog internal constructor(
             onOk,
             onCancelLabelResource,
             onCancelLabel,
-            onCancel
+            onCancel,
         )
     }
 }

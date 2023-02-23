@@ -8,7 +8,7 @@ class OAuthActivityBuilder<A : OAuthBaseActivity>(
     private val activity: Activity,
     private val callbackURL: String,
     private val apiKey: String,
-    private val apiSecret: String
+    private val apiSecret: String,
 ) {
     fun buildIntent() = Intent(activity, clazz).apply {
         putExtra(IntentKey.CALLBACK_ACTIVITY, activity.javaClass.name)

@@ -30,7 +30,7 @@ class MainActivity : ComponentActivity() {
                         this,
                         BuildConfig.TWITTER_CALLBACK_URL,
                         BuildConfig.TWITTER_API_KEY,
-                        BuildConfig.TWITTER_API_SECRET
+                        BuildConfig.TWITTER_API_SECRET,
                     ).buildIntent().let { startActivity(it) }
                 }
             }
