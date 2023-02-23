@@ -11,7 +11,7 @@ import androidx.fragment.app.FragmentActivity
 open class BaseDialog : DialogFragment() {
     @JvmOverloads
     fun show(fragment: Fragment, tag: String? = null) {
-        fragment.fragmentManager?.beginTransaction()?.apply {
+        fragment.parentFragmentManager.beginTransaction().apply {
             add(this@BaseDialog, tag)
             commitAllowingStateLoss()
         }

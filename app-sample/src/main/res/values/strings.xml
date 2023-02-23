@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">android-common-library-sample</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="hello_world">Hello World!</string>
+    <string name="app_name" translatable="false">android-common-library-sample</string>
+    <string name="title_activity_main" translatable="false">SampleApp for android-common-library</string>
 </resources>
