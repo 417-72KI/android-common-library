@@ -13,6 +13,7 @@ trim_trailing_whitespace = true
 [*.{kt,kts}]
 ij_kotlin_line_break_after_multiline_when_entry = false
 ktlint_standard_import-ordering = disabled
+ktlint_standard_multiline-if-else = disabled
 ktlint_standard_no-wildcard-imports = disabled
 
 [*.{yml,json}]

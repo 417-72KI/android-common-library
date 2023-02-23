@@ -1,10 +1,11 @@
 @file:Repository("https://repo.maven.apache.org/maven2/")
 @file:DependsOn("io.github.ackeecz:danger-kotlin-junit:0.1.0")
-@file:DependsOn("io.github.417-72ki:danger-kotlin-checkstyle_format:0.0.2")
+@file:DependsOn("io.github.417-72ki:danger-kotlin-checkstyle_format:0.1.0")
 @file:OptIn(ExperimentalPathApi::class)
 
 import io.github.ackeecz.danger.junit.JUnitPlugin
 import jp.room417.danger_kotlin_checkstyle_format.CheckstyleFormat
+import jp.room417.danger_kotlin_checkstyle_format.ktlint.reportKtlint
 import systems.danger.kotlin.*
 import java.io.File
 import java.io.IOException
@@ -31,14 +32,12 @@ danger(args) {
             }
         }
     }
-    path.forEachDirectoryEntryRecursive(glob = "**/build/reports/ktlint/**/ktlint*.xml") {
-        CheckstyleFormat.basePath = if (System.getenv("CI") == "true") {
-            Path("/home/runner/work/android-common-library/android-common-library")
-        } else {
-            Path(System.getenv("WORKING_DIR") ?: System.getProperty("user.dir"))
-        }
-        CheckstyleFormat.report(it)
+    CheckstyleFormat.basePath = if (System.getenv("CI") == "true") {
+        Path("/home/runner/work/android-common-library/android-common-library")
+    } else {
+        Path(System.getenv("WORKING_DIR") ?: System.getProperty("user.dir"))
     }
+    CheckstyleFormat.reportKtlint()
 
     path.forEachDirectoryEntryRecursive(glob = "**/build/test-results/*/*.xml") {
         JUnitPlugin.parse(File(it.toUri()))
@@ -57,9 +56,11 @@ fun Path.forEachDirectoryEntryRecursive(glob: String, action: (Path) -> Unit) {
                 it.forEachDirectoryEntryRecursive(glob.removePrefix("$subdir/"), action)
             }
         }
-        "**" -> forEachDirectoryEntry(glob = "**") {
-            if (it.isDirectory()) {
-                it.forEachDirectoryEntryRecursive(glob.removePrefix("$subdir/"), action)
+        "**" -> {
+            forEachDirectoryEntryRecursive(glob.removePrefix("$subdir/"), action)
+            forEachDirectoryEntry(glob = "**") {
+                if (it.isDirectory())
+                    it.forEachDirectoryEntryRecursive(glob, action)
             }
         }
         else -> resolve(subdir)
