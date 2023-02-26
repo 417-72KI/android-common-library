@@ -1,7 +1,16 @@
+[![publish](https://github.com/417-72KI/android-common-library/actions/workflows/publish.yml/badge.svg?branch=main)](https://github.com/417-72KI/android-common-library/actions/workflows/publish.yml)
+[![latest](https://img.shields.io/github/v/release/417-72KI/android-common-library?label=latest)](https://github.com/417-72KI/android-common-library/releases/latest)
+[![license](https://img.shields.io/github/license/417-72KI/android-common-library)](https://github.com/417-72KI/android-common-library/blob/main/LICENSE)
+
 # android-common-library
 An android library to reduce frequently used functions/utilities in my apps.
 
 ## Requirement
+### v4.x
+- JDK 11+
+- Gradle 8.0.1+
+- Android Studio Electric Eel 2022.1.1+
+
 ### v2.x
 - JDK 11+
 - Gradle 7.1.1+
@@ -34,7 +43,7 @@ allprojects {
 
 ```groovy
 dependencies {
-    implementation 'jp.room417:android-common-library:1.0.1'
-    implementation 'jp.room417:twitter4android:1.0.1' // If use Twitter
+    implementation 'jp.room417:android-common-library:4.0.0'
+    implementation 'jp.room417:twitter4android:4.0.0' // If use Twitter
 }
 ```
