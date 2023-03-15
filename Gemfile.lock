@@ -26,7 +26,7 @@ GEM
       no_proxy_fix
       octokit (~> 5.0)
       terminal-table (>= 1, < 4)
-    danger-android_lint (0.0.8)
+    danger-android_lint (0.0.11)
       danger-plugin-api (~> 1.0)
       oga
     danger-checkstyle_format (0.1.1)
@@ -62,7 +62,7 @@ GEM
     faraday-patron (1.0.0)
     faraday-rack (1.0.0)
     faraday-retry (1.0.3)
-    git (1.13.1)
+    git (1.13.2)
       addressable (~> 2.8)
       rchardet (~> 1.8)
     kramdown (2.4.0)
