@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.8.1)
+    addressable (2.8.4)
       public_suffix (>= 2.0.2, < 6.0)
     ansi (1.5.0)
     ast (2.4.2)
@@ -26,7 +26,7 @@ GEM
       no_proxy_fix
       octokit (~> 5.0)
       terminal-table (>= 1, < 4)
-    danger-android_lint (0.0.11)
+    danger-android_lint (0.0.12)
       danger-plugin-api (~> 1.0)
       oga
     danger-checkstyle_format (0.1.1)
