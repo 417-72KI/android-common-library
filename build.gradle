@@ -1,7 +1,7 @@
 buildscript {
     ext {
         kotlin_version = '1.8.10'
-        ktx_version = '1.10.0'
+        ktx_version = '1.10.1'
         appcompat_version = '1.6.1'
         coroutines_version = '1.6.4'
         dagger_hilt_version = '2.47'
