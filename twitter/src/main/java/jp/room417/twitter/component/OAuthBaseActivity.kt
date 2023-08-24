@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 import twitter4j.AccessToken
 import twitter4j.RequestToken
 
-@Deprecated("Twitter v1.1 APIs are EOL and this library will no longer support.")
+@Deprecated("Twitter v1.1 APIs are EOL and this library will no longer support since next major version.")
 abstract class OAuthBaseActivity(
     private val factory: TwitterServiceFactory = DefaultTwitterServiceFactory(),
 ) : BaseActivity() {
