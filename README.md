@@ -6,6 +6,11 @@
 An android library to reduce frequently used functions/utilities in my apps.
 
 ## Requirement
+### v5.x
+- JDK 17+
+- Gradle 8.1.0+
+- Android Studio Giraffe 2022.3.1+
+
 ### v4.x
 - JDK 11+
 - Gradle 8.0.1+
