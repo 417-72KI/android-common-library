@@ -7,7 +7,6 @@ plugins {
 android {
     namespace 'jp.room417.twitter'
     compileSdkVersion compile_sdk_version
-    buildToolsVersion build_tools_version
 
     defaultConfig {
         minSdkVersion min_sdk_version
