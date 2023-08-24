@@ -1,7 +1,7 @@
 name: pr
 on:
   pull_request:
-    types: [opened, synchronize, edited]
+    types: [ opened, synchronize, edited ]
     paths-ignore:
       - README.md
       - LICENSE
@@ -15,42 +15,42 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: set up JDK 11
-      uses: actions/setup-java@v3
-      with:
-        distribution: zulu
-        java-version: 11
-    - uses: actions/cache@v3
-      with:
-        path: |
-          ~/.gradle/caches
-          ~/.gradle/wrapper
-        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-        restore-keys: |
-          ${{ runner.os }}-gradle-
-    - name: build
-      run: |
-        ./gradlew --continue clean
-        mkdir -p build/reports
-        ./gradlew --continue build --stacktrace 2>build/reports/build-error-log.txt
-    - name: lint and test
-      if: success()
-      run: ./gradlew --continue ktlintCheck lintDebug testDebug --stacktrace
-    - name: 'Upload lint and test reports'
-      uses: actions/upload-artifact@v3
-      if: cancelled() != true
-      with:
-        name: reports
-        path: |
-          **/build/reports
-          **/build/test-results
-        retention-days: 7
-    - name: Run Danger-Kotlin
-      if: cancelled() != true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        JOB_STATUS: ${{ job.status }}
-      uses: docker://ghcr.io/danger/danger-kotlin:1.2.0
-      with:
+      - uses: actions/checkout@v3
+      - name: set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: zulu
+          java-version: 17
+      - uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+      - name: build
+        run: |
+          ./gradlew --continue clean
+          mkdir -p build/reports
+          ./gradlew --continue build --stacktrace 2>build/reports/build-error-log.txt
+      - name: lint and test
+        if: success()
+        run: ./gradlew --continue ktlintCheck lintDebug testDebug --stacktrace
+      - name: 'Upload lint and test reports'
+        uses: actions/upload-artifact@v3
+        if: cancelled() != true
+        with:
+          name: reports
+          path: |
+            **/build/reports
+            **/build/test-results
+          retention-days: 7
+      - name: Run Danger-Kotlin
+        if: cancelled() != true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          JOB_STATUS: ${{ job.status }}
+        uses: docker://ghcr.io/danger/danger-kotlin:1.2.0
+        with:
           args: --failOnErrors --no-publish-check
