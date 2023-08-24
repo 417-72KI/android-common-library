@@ -4,6 +4,7 @@ import jp.room417.twitter4kt.Twitter
 import jp.room417.twitter4kt.auth.OAuthAuthorization
 import twitter4j.AccessToken
 
+@Deprecated("Twitter v1.1 APIs are EOL and this library will no longer support since next major version.")
 interface TwitterService {
     val twitter: Twitter?
     val oAuthAuthorization: OAuthAuthorization
