@@ -3,7 +3,7 @@ package jp.room417.twitter.component
 import android.app.Activity
 import android.content.Intent
 
-@Deprecated("Twitter v1.1 APIs are EOL and this library will be removed on next major version.")
+@Deprecated("Twitter v1.1 APIs are EOL and this library will no longer support.")
 class OAuthActivityBuilder<A : OAuthBaseActivity>(
     private val clazz: Class<A>,
     private val activity: Activity,
