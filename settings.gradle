@@ -1,4 +1,2 @@
-include ':twitter'
 include ':common'
-include ':app-sample'
 rootProject.name = "android-common-library"
