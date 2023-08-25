@@ -48,7 +48,7 @@ allprojects {
 
 ```groovy
 dependencies {
-    implementation 'jp.room417:android-common-library:4.0.0'
-    implementation 'jp.room417:twitter4android:4.0.0' // If use Twitter
+    implementation 'jp.room417:android-common-library:5.0.0'
+    implementation 'jp.room417:twitter4android:5.0.0' // If use Twitter
 }
 ```
