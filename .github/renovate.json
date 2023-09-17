@@ -1,32 +1,8 @@
 {
   "extends": [
-    "config:base",
-    "github>hatena/renovate-config"
+    "github>417-72KI/renovate-config"
   ],
-  "labels": ["dependencies"],
-  "schedule": [
-    "after 7pm every weekday",
-    "before 8am every weekday",
-    "every weekend"
-  ],
-  "automerge": true,
-  "major": {
-      "automerge": false
-  },
-  "minor": {
-    "automerge": false
-  },
-  "packageRules": [
-    {
-        "matchManagers": ["ruby-version"],
-        "enabled": false
-    },
-    {
-      "matchManagers": ["bundler"],
-      "automerge": true,
-      "major": {
-        "automerge": false
-      }
-    }
-  ]
+  "ruby-version": {
+    "enabled": false
+  }
 }
