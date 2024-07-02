@@ -70,7 +70,7 @@ android {
 dependencies {
     implementation project(path: ':common')
     implementation project(path: ':twitter')
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.8.2'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.8.3'
     implementation 'androidx.activity:activity-compose:1.9.0'
     implementation 'androidx.compose.material:material:1.6.8'
 
