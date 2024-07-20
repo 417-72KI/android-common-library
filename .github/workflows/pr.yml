@@ -29,6 +29,10 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
+      - name: Set up Ruby from .ruby-version
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
       - name: build
         run: |
           ./gradlew --continue clean
@@ -46,11 +50,9 @@ jobs:
             **/build/reports
             **/build/test-results
           retention-days: 7
-      - name: Run Danger-Kotlin
+      - name: Run Danger
         if: cancelled() != true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           JOB_STATUS: ${{ job.status }}
-        uses: docker://ghcr.io/danger/danger-kotlin:1.2.0
-        with:
-          args: --failOnErrors --no-publish-check
+        run: bundle exec danger --remove-previous-comments --fail-on-errors=true
