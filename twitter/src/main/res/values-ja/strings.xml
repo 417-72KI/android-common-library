@@ -1,6 +1,0 @@
-<resources>
-    <string name="twitter_already_connected">"Twitter連携済みです"</string>
-    <string name="undefined_error">不明なエラーが発生しました</string>
-    <string name="auth_success">認証成功！</string>
-    <string name="auth_failed">"認証失敗。。。"</string>
-</resources>

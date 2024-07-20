@@ -1,6 +1,0 @@
-<resources>
-    <string name="twitter_already_connected">"Has already been connected to Twitter"</string>
-    <string name="undefined_error">Undefined error occurred.</string>
-    <string name="auth_success">Authentication success!</string>
-    <string name="auth_failed">Authentication failed…</string>
-</resources>
