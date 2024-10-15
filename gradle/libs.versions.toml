@@ -1,0 +1,36 @@
+[versions]
+appcompat = "1.7.1"
+assertj = "3.27.3"
+core-ktx = "1.16.0"
+coroutines-android = "1.10.2"
+espresso-core = "3.6.1"
+gradle = "8.11.1"
+kotlin = "2.2.0"
+
+ktlint = '12.3.0'
+
+androidx-test = "1.2.1"
+core-testing = "2.2.0"
+junit-jupiter = "5.13.3"
+mockito-kotlin = "1.6.0"
+
+[libraries]
+android-gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
+assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }
+kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
+kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines-android" }
+
+androidx-core-testing = { module = "androidx.arch.core:core-testing", version.ref = "core-testing" }
+androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso-core" }
+androidx-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-test" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
+mockito-kotlin = { module = "com.nhaarman:mockito-kotlin", version.ref = "mockito-kotlin" }
+
+[plugins]
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }

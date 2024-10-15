@@ -45,22 +45,22 @@ android {
 }
 
 dependencies {
-    implementation "androidx.appcompat:appcompat:$appcompat_version"
-    implementation "androidx.core:core-ktx:$ktx_version"
+    implementation libs.androidx.appcompat
+    implementation libs.androidx.core.ktx
     // https://youtrack.jetbrains.com/issue/KT-33248
     // noinspection DifferentStdlibGradleVersion
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+    implementation libs.kotlin.stdlib
+    implementation libs.kotlin.reflect
+    implementation libs.kotlinx.coroutines.android
 
-    testImplementation 'androidx.arch.core:core-testing:2.2.0'
-    testImplementation 'com.nhaarman:mockito-kotlin:1.6.0'
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.13.3'
-    testImplementation 'org.assertj:assertj-core:3.27.3'
-    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
+    testImplementation libs.androidx.core.testing
+    testImplementation libs.mockito.kotlin
+    testImplementation libs.junit.jupiter
+    testImplementation libs.assertj.core
+    androidTestImplementation libs.androidx.junit
+    androidTestImplementation libs.androidx.espresso.core
 
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testRuntimeOnly libs.junit.platform.launcher
 }
 
 task sourceJar(type: Jar) {
