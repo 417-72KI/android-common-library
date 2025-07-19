@@ -3,6 +3,7 @@ package jp.room417.common.util
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
+import androidx.core.content.edit
 
 /**
  * Wrapper of `SharedPreferences`
@@ -22,54 +23,44 @@ class PrefSys(context: Context, identifier: String? = null) {
         sys = context.getSharedPreferences("$appName.sys", Context.MODE_PRIVATE)
     }
 
-    fun setPrefInt(label: String, put: Int) = pref.edit().run {
+    fun setPrefInt(label: String, put: Int) = pref.edit {
         putInt(label, put)
-        apply()
     }
 
-    fun setPrefString(label: String, put: String) = pref.edit().run {
+    fun setPrefString(label: String, put: String) = pref.edit {
         putString(label, put)
-        apply()
     }
 
-    fun setPrefBoolean(label: String, put: Boolean) = pref.edit().run {
+    fun setPrefBoolean(label: String, put: Boolean) = pref.edit {
         putBoolean(label, put)
-        apply()
     }
 
-    fun setSysInt(label: String, put: Int) = sys.edit().run {
+    fun setSysInt(label: String, put: Int) = sys.edit {
         putInt(label, put)
-        apply()
     }
 
-    fun setSysFloat(label: String, put: Float) = sys.edit().run {
+    fun setSysFloat(label: String, put: Float) = sys.edit {
         putFloat(label, put)
-        apply()
     }
 
-    fun setSysString(label: String, put: String) = sys.edit().run {
+    fun setSysString(label: String, put: String) = sys.edit {
         putString(label, put)
-        apply()
     }
 
-    fun setSysLong(label: String, put: Long) = sys.edit().run {
+    fun setSysLong(label: String, put: Long) = sys.edit {
         putLong(label, put)
-        apply()
     }
 
-    fun setSysBoolean(label: String, put: Boolean) = sys.edit().run {
+    fun setSysBoolean(label: String, put: Boolean) = sys.edit {
         putBoolean(label, put)
-        apply()
     }
 
-    fun removePref(label: String) = pref.edit().run {
+    fun removePref(label: String) = pref.edit {
         remove(label)
-        apply()
     }
 
-    fun removeSys(label: String) = sys.edit().run {
+    fun removeSys(label: String) = sys.edit {
         remove(label)
-        apply()
     }
 
     fun getPrefInt(label: String, def: Int = 0): Int = pref.getInt(label, def)
