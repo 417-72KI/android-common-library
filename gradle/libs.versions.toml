@@ -1,6 +1,6 @@
 [versions]
 appcompat = "1.7.1"
-assertj = "3.27.3"
+assertj = "3.27.4"
 core-ktx = "1.16.0"
 coroutines-android = "1.10.2"
 espresso-core = "3.7.0"
