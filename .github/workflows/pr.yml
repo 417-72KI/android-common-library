@@ -42,7 +42,7 @@ jobs:
         if: success()
         run: ./gradlew --continue ktlintCheck lintDebug testDebug --stacktrace
       - name: 'Upload lint and test reports'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         if: cancelled() != true
         with:
           name: reports
