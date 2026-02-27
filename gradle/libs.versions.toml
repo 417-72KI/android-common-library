@@ -4,7 +4,7 @@ assertj = "3.27.7"
 core-ktx = "1.17.0"
 coroutines-android = "1.10.2"
 espresso-core = "3.7.0"
-gradle = "8.12.2"
+gradle = "8.13.2"
 kotlin = "2.3.10"
 
 ktlint = '13.1.0'
