@@ -20,21 +20,20 @@ class ErrorDialog internal constructor(
     private val onOkListener: DialogInterface.OnClickListener
         get() = DialogInterface.OnClickListener { _, _ -> onOk() }
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog =
-        AlertDialog.Builder(requireActivity())
-            .apply {
-                titleResource?.let { setTitle(it) }
-                    ?: setTitle(title)
-                messageResource?.let { setMessage(it) }
-                    ?: setMessage(message)
-                onOkLabel?.let { setPositiveButton(it, onOkListener) }
-                    ?: setPositiveButton(onOkLabelResource, onOkListener)
-            }
-            .setCancelable(false)
-            .create()
-            .apply {
-                setCanceledOnTouchOutside(false)
-            }
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog = AlertDialog.Builder(requireActivity())
+        .apply {
+            titleResource?.let { setTitle(it) }
+                ?: setTitle(title)
+            messageResource?.let { setMessage(it) }
+                ?: setMessage(message)
+            onOkLabel?.let { setPositiveButton(it, onOkListener) }
+                ?: setPositiveButton(onOkLabelResource, onOkListener)
+        }
+        .setCancelable(false)
+        .create()
+        .apply {
+            setCanceledOnTouchOutside(false)
+        }
 
     class Builder {
         @StringRes

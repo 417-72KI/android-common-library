@@ -26,20 +26,19 @@ class ConfirmDialog internal constructor(
     private val onCancelListener: DialogInterface.OnClickListener
         get() = DialogInterface.OnClickListener { _, _ -> onCancel() }
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog =
-        AlertDialog.Builder(requireActivity())
-            .setCancelable(true)
-            .apply {
-                titleResource?.let { setTitle(it) }
-                    ?: setTitle(title)
-                messageResource?.let { setMessage(it) }
-                    ?: setMessage(message)
-                onOkLabel?.let { setPositiveButton(it, onOkListener) }
-                    ?: setPositiveButton(onOkLabelResource, onOkListener)
-                onCancelLabel?.let { setNegativeButton(it, onCancelListener) }
-                    ?: setNegativeButton(onCancelLabelResource, onCancelListener)
-            }
-            .create()
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog = AlertDialog.Builder(requireActivity())
+        .setCancelable(true)
+        .apply {
+            titleResource?.let { setTitle(it) }
+                ?: setTitle(title)
+            messageResource?.let { setMessage(it) }
+                ?: setMessage(message)
+            onOkLabel?.let { setPositiveButton(it, onOkListener) }
+                ?: setPositiveButton(onOkLabelResource, onOkListener)
+            onCancelLabel?.let { setNegativeButton(it, onCancelListener) }
+                ?: setNegativeButton(onCancelLabelResource, onCancelListener)
+        }
+        .create()
 
     class Builder {
         @StringRes
