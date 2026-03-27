@@ -62,13 +62,13 @@ def createVersion = {
 
 project.ext.describedVersion = createVersion()
 
-task printVersion {
+tasks.register('printVersion') {
     doLast {
         println createVersion()
     }
 }
 
-task createTagFromVersion {
+tasks.register('createTagFromVersion') {
     doFirst {
         if (['sh', '-c', 'git symbolic-ref --short HEAD'].execute().text.trim() != 'main') {
             throw new GradleException('This task must be run in main branch')
