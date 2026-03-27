@@ -12,7 +12,11 @@ import java.util.stream.Stream
 class NullableExtensionTest {
     @ParameterizedTest
     @ArgumentsSource(LetWithTestCase::class)
-    fun letWith(param1: String?, param2: Int?, expected: String?) {
+    fun letWith(
+        param1: String?,
+        param2: Int?,
+        expected: String?,
+    ) {
         assertThat(param1?.letWith(param2) { p1, p2 -> "$p1: $p2" })
             .isEqualTo(expected)
     }
