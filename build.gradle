@@ -4,7 +4,7 @@ buildscript {
         target_sdk_version = 36
         compile_sdk_version = 36
         java_version = JavaVersion.VERSION_21
-        jvm_target = '21'
+        jvm_target = "21"
     }
     repositories {
         google()
@@ -21,8 +21,8 @@ plugins {
     alias libs.plugins.kotlin.android apply false
 }
 
-apply from: 'gradle/properties-reader.gradle'
-apply from: 'gradle/version.gradle'
+apply from: "gradle/properties-reader.gradle"
+apply from: "gradle/version.gradle"
 
 allprojects {
     apply plugin: libs.plugins.ktlint.get().pluginId
@@ -32,8 +32,8 @@ allprojects {
         mavenCentral()
 
         configurations.all {
-            // Don't cache changing modules at all.
-            resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+            // Don"t cache changing modules at all.
+            resolutionStrategy.cacheChangingModulesFor 0, "seconds"
         }
     }
 
