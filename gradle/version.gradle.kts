@@ -5,14 +5,15 @@ class SemanticVersion(
     var minor: Int,
     var patch: Int,
     var preRelease: String?,
-    var metadata: String?
+    var metadata: String?,
 ) {
     companion object {
         val initial = SemanticVersion(0, 0, 0, "SNAPSHOT", null)
 
         fun from(str: String): SemanticVersion? {
             // https://semver.org/#is-there-a-suggested-regular-expression-regex-to-check-a-semver-string
-            val regex = Regex("""^v?(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$""")
+            val regex =
+                Regex("""^v?(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$""")
             val matchResult = regex.find(str) ?: return null
             val groups = matchResult.groupValues
             return SemanticVersion(
@@ -20,7 +21,7 @@ class SemanticVersion(
                 groups[2].toInt(),
                 groups[3].toInt(),
                 groups.getOrNull(4).takeIf { it?.isNotEmpty() == true },
-                groups.getOrNull(5).takeIf { it?.isNotEmpty() == true }
+                groups.getOrNull(5).takeIf { it?.isNotEmpty() == true },
             )
         }
     }
@@ -121,5 +122,11 @@ tasks.register("createTagFromVersion") {
 
         val releaseRet = ProcessBuilder("gh", "release", "create", version, "--generate-notes").inheritIO().start().waitFor()
         if (releaseRet != 0) throw GradleException("invalid return code on `gh release create`: $releaseRet")
+    }
+}
+
+allprojects {
+    beforeEvaluate {
+        extra.set("describedVersion", createVersion())
     }
 }

@@ -1,9 +1,8 @@
 buildscript {
-    val min_sdk_version: Int by extra(23)
-    val target_sdk_version: Int by extra(36)
-    val compile_sdk_version: Int by extra(36)
-    val java_version: JavaVersion by extra(JavaVersion.VERSION_21)
-    val jvm_target: String by extra("21")
+    val minSDKVersion: Int by extra(23)
+    val compileSDKVersion: Int by extra(36)
+    val javaVersion: JavaVersion by extra(JavaVersion.VERSION_21)
+    val jvmTarget: String by extra("21")
 
     repositories {
         google()
@@ -26,7 +25,8 @@ apply(from = "gradle/properties-reader.gradle.kts")
 apply(from = "gradle/version.gradle.kts")
 
 allprojects {
-    apply(plugin = libs.plugins.ktlint.get().pluginId)
+//    apply(plugin = libs.plugins.ktlint.get().pluginId)
+    apply(plugin = "org.jlleitschuh.gradle.ktlint")
 
     repositories {
         google()

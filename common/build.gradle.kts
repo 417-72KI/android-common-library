@@ -5,21 +5,16 @@ plugins {
     alias(libs.plugins.maven.publish)
 }
 
-val min_sdk_version: Int by rootProject.extra
-val target_sdk_version: Int by rootProject.extra
-val compile_sdk_version: Int by rootProject.extra
-val java_version: JavaVersion by rootProject.extra
+val minSDKVersion: Int by rootProject.extra
+val compileSDKVersion: Int by rootProject.extra
+val javaVersion: JavaVersion by rootProject.extra
 
 android {
     namespace = "jp.room417.common"
-    compileSdk = compile_sdk_version
+    compileSdk = compileSDKVersion
 
     defaultConfig {
-        minSdk = min_sdk_version
-        targetSdk = target_sdk_version
-        // versionCode 1
-        // versionName project.extra["describedVersion"] as String
-
+        minSdk = minSDKVersion
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -30,13 +25,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = java_version
-        targetCompatibility = java_version
-    }
-    testOptions {
-        unitTests.all {
-            useJUnitPlatform()
-        }
+        sourceCompatibility = javaVersion
+        targetCompatibility = javaVersion
     }
 
     publishing {
@@ -64,6 +54,10 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     testRuntimeOnly(libs.junit.platform.launcher)
+}
+
+tasks.withType<Test>().configureEach {
+    useJUnitPlatform()
 }
 
 tasks.register<Jar>("sourceJar") {
