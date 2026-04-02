@@ -78,12 +78,9 @@ fun createVersion(): String {
 }
 
 val versionValue = createVersion()
-extra.set("describedVersion", versionValue)
 
 tasks.register("printVersion") {
-    doLast {
-        println(createVersion())
-    }
+    doLast { println(versionValue) }
 }
 
 tasks.register("createTagFromVersion") {
@@ -94,7 +91,7 @@ tasks.register("createTagFromVersion") {
         "git pull --rebase --tags".runCommand()
     }
     doLast {
-        var version = createVersion().replace("-SNAPSHOT", "")
+        var version = versionValue.replace("-SNAPSHOT", "")
         if (!version.startsWith("v")) {
             version = "v$version"
         }
@@ -127,6 +124,6 @@ tasks.register("createTagFromVersion") {
 
 allprojects {
     beforeEvaluate {
-        extra.set("describedVersion", createVersion())
+        extra.set("describedVersion", versionValue)
     }
 }
