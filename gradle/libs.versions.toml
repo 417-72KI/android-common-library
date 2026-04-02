@@ -32,5 +32,7 @@ junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher
 mockito-kotlin = { module = "com.nhaarman:mockito-kotlin", version.ref = "mockito-kotlin" }
 
 [plugins]
+android-library = { id = "com.android.library" }
+maven-publish = { id = "maven-publish" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
