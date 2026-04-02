@@ -24,9 +24,11 @@ plugins {
 apply(from = "gradle/properties-reader.gradle.kts")
 apply(from = "gradle/version.gradle.kts")
 
+// Avoid `subprojects block: Extension with name 'libs' does not exist`
+// Ref: https://github.com/gradle/gradle/issues/18237
+val ktlintPlugin = libs.plugins.ktlint
 allprojects {
-//    apply(plugin = libs.plugins.ktlint.get().pluginId)
-    apply(plugin = "org.jlleitschuh.gradle.ktlint")
+    apply(plugin = ktlintPlugin.get().pluginId)
 
     repositories {
         google()
