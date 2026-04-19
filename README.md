@@ -3,25 +3,43 @@
 [![license](https://img.shields.io/github/license/417-72KI/android-common-library)](https://github.com/417-72KI/android-common-library/blob/main/LICENSE)
 
 # android-common-library
+
 An android library to reduce frequently used functions/utilities in my apps.
 
 ## Requirement
+
+### v8.x
+
+- JDK 21+
+- Gradle 9.1.0+
+- Android Studio Panda 2025.3.1+
+
+### v7.x
+
+- JDK 17+
+- Gradle 8.11.1+
+- Android Studio Koala 2024.1.2+
+
 ### v5.x
+
 - JDK 17+
 - Gradle 8.1.0+
 - Android Studio Giraffe 2022.3.1+
 
 ### v4.x
+
 - JDK 11+
 - Gradle 8.0.1+
 - Android Studio Electric Eel 2022.1.1+
 
 ### v2.x
+
 - JDK 11+
 - Gradle 7.1.1+
 - Android Studio Arctic Fox 2020.3.1+
 
 ### v1.0.x
+
 - JDK 8+
 - Gradle 4.2.2+
 
@@ -32,7 +50,7 @@ An android library to reduce frequently used functions/utilities in my apps.
 ```groovy
 allprojects {
     repositories {
-        ・・・
+        ・ ・ ・
         maven {
             url 'https://maven.pkg.github.com/417-72KI/android-common-library'
             credentials {
