@@ -100,10 +100,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  danger (~> 9.5.0)
-  danger-android_lint (~> 0.0.8)
-  danger-checkstyle_format (~> 0.1.1)
-  danger-junit (~> 1.0.0)
+  danger (= 9.5.3)
+  danger-android_lint (= 0.0.12)
+  danger-checkstyle_format (= 0.1.1)
+  danger-junit (= 1.0.2)
 
 CHECKSUMS
   addressable (2.8.7) sha256=462986537cf3735ab5f3c0f557f14155d778f4b43ea4f485a9deb9c8f7c58232
