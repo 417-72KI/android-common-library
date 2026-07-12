@@ -64,14 +64,14 @@ GEM
       faraday (>= 0.8)
     faraday-net_http (3.4.4)
       net-http (~> 0.5)
-    git (2.3.3)
+    git (4.4.0)
       activesupport (>= 5.0)
       addressable (~> 2.8)
-      process_executer (~> 1.1)
-      rchardet (~> 1.8)
+      process_executer (~> 4.0)
+      rchardet (~> 1.9)
     i18n (1.15.2)
       concurrent-ruby (~> 1.0)
-    json (2.20.0)
+    json (2.21.0)
     kramdown (2.5.2)
       rexml (>= 3.4.4)
     kramdown-parser-gfm (1.1.0)
@@ -90,10 +90,11 @@ GEM
       ast
       ruby-ll (~> 2.2)
     open4 (1.3.4)
-    ox (2.14.27)
+    ox (2.14.28)
       bigdecimal (>= 3.0)
     prism (1.9.0)
-    process_executer (1.3.0)
+    process_executer (4.0.4)
+      track_open_instances (~> 0.1)
     pstore (0.2.1)
     public_suffix (7.0.5)
     rchardet (1.10.2)
@@ -107,6 +108,7 @@ GEM
     securerandom (0.4.1)
     terminal-table (4.0.0)
       unicode-display_width (>= 1.1.1, < 4)
+    track_open_instances (0.1.15)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (3.2.0)
@@ -145,9 +147,9 @@ CHECKSUMS
   faraday (2.14.3) sha256=1882247e6766615c8220b4392bf1d27f6ebb63d8e28267587cef1fb0bf37f278
   faraday-http-cache (2.7.0) sha256=cd7ac4bbe6c08592ea7af6655f98b2f76c4db0bad31bf40340df5aad719f0d89
   faraday-net_http (3.4.4) sha256=0e78af151747ed1b00f33e25973b4bc220d7f16c00c39676817c8b12331eb588
-  git (2.3.3) sha256=2e154f5f905185265cdd6836556e9ae79d1730d0b4572bf537f6bfbfbf7770e5
+  git (4.4.0) sha256=93d4054467a04d9038be068d64f1b982bb26be8dbb1f7b391bd6df6e626639ec
   i18n (1.15.2) sha256=00f9eb62412fe593b2a65a97daa75300d37abb8f7202ec748e94b6d46a9dd1b5
-  json (2.20.0) sha256=9362bc6e55a952b056abf9167cf053358181c904cb70cd6eee0808ea830fc32b
+  json (2.21.0) sha256=8de199e53f93450414b9fd49811012a73f3e3265b60468c7274d1cacebde1969
   kramdown (2.5.2) sha256=1ba542204c66b6f9111ff00dcc26075b95b220b07f2905d8261740c82f7f02fa
   kramdown-parser-gfm (1.1.0) sha256=fb39745516427d2988543bf01fc4cf0ab1149476382393e0e9c48592f6581729
   logger (1.7.0) sha256=196edec7cc44b66cfb40f9755ce11b392f21f7967696af15d274dde7edff0203
@@ -157,9 +159,9 @@ CHECKSUMS
   octokit (10.0.0) sha256=82e99a539b7637b7e905e6d277bb0c1a4bed56735935cc33db6da7eae49a24e8
   oga (3.5) sha256=2b65fe1dd192c01079f93748a04a7a8011369e4c99ea1c7e73f4a037e3229353
   open4 (1.3.4) sha256=a1df037310624ecc1ea1d81264b11c83e96d0c3c1c6043108d37d396dcd0f4b1
-  ox (2.14.27) sha256=5e84f06124ee82e8178dfa4dd7fa2c10ec01d45c1be466ee7d1e4ec98d3b9b9c
+  ox (2.14.28) sha256=0b0bf5a1076a747a65d6ae99c6ffb1a9b03d021d08ae26d4e387f5040486b32d
   prism (1.9.0) sha256=7b530c6a9f92c24300014919c9dcbc055bf4cdf51ec30aed099b06cd6674ef85
-  process_executer (1.3.0) sha256=3b01a22d27e13204598d8f73118b5b1c3b59576969724a380b712a72edd5546f
+  process_executer (4.0.4) sha256=6c179bd31b876e220e7a1ed30c8f8ee7333b9b5b4b8c301474b947b707c3ba6f
   pstore (0.2.1) sha256=03904d0f2c66579e96d1e6704cdabc0c88df7ea8ed8782d9f3569f6f6c702c1a
   public_suffix (7.0.5) sha256=1a8bb08f1bbea19228d3bed6e5ed908d1cb4f7c2726d18bd9cadf60bc676f623
   rchardet (1.10.2) sha256=e041cb195f464dc10e49ab130f78c8b5956cd9a4f4f6df84e0c183b87c135f33
@@ -168,6 +170,7 @@ CHECKSUMS
   sawyer (0.9.3) sha256=0d0f19298408047037638639fe62f4794483fb04320269169bd41af2bdcf5e41
   securerandom (0.4.1) sha256=cc5193d414a4341b6e225f0cb4446aceca8e50d5e1888743fac16987638ea0b1
   terminal-table (4.0.0) sha256=f504793203f8251b2ea7c7068333053f0beeea26093ec9962e62ea79f94301d2
+  track_open_instances (0.1.15) sha256=7f0e48821e6b4c881daaa40fb1583e308937c22a9c84883c150b399c3b5c3029
   tzinfo (2.0.6) sha256=8daf828cc77bcf7d63b0e3bdb6caa47e2272dcfaf4fbfe46f8c3a9df087a829b
   unicode-display_width (3.2.0) sha256=0cdd96b5681a5949cdbc2c55e7b420facae74c4aaf9a9815eee1087cb1853c42
   unicode-emoji (4.2.0) sha256=519e69150f75652e40bf736106cfbc8f0f73aa3fb6a65afe62fefa7f80b0f80f
