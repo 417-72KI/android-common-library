@@ -64,7 +64,7 @@ GEM
       faraday (>= 0.8)
     faraday-net_http (3.4.4)
       net-http (~> 0.5)
-    git (5.0.5)
+    git (5.1.0)
       activesupport (>= 5.0)
       addressable (~> 2.8)
       process_executer (~> 4.0)
@@ -147,7 +147,7 @@ CHECKSUMS
   faraday (2.14.3) sha256=1882247e6766615c8220b4392bf1d27f6ebb63d8e28267587cef1fb0bf37f278
   faraday-http-cache (2.7.0) sha256=cd7ac4bbe6c08592ea7af6655f98b2f76c4db0bad31bf40340df5aad719f0d89
   faraday-net_http (3.4.4) sha256=0e78af151747ed1b00f33e25973b4bc220d7f16c00c39676817c8b12331eb588
-  git (5.0.5) sha256=aa84f7b0d4955e885dc55fb3b9f028b3532d40ec5111109bf2cc3b17d5a91373
+  git (5.1.0) sha256=405b32aba933f685278e35371685cf45288bdc3d37ab4e780210d3fcb748225e
   i18n (1.15.2) sha256=00f9eb62412fe593b2a65a97daa75300d37abb8f7202ec748e94b6d46a9dd1b5
   json (2.21.2) sha256=1f1d3b7cf2b3ba1a69beca0bb6db13d5438b80bff3cd54cdaaa620b9b07c1c6a
   kramdown (2.5.2) sha256=1ba542204c66b6f9111ff00dcc26075b95b220b07f2905d8261740c82f7f02fa
